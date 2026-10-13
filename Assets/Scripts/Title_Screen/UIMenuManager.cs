@@ -1,6 +1,10 @@
 using UnityEngine;
 
-// Aqui vai ser pra gerenciar tudo do Title Screen, se for preciso adicionar algo novo, avise e coloque um comentario para ajudar a entender / não quebrar a logica
+/*
+ Aqui vai ser pra gerenciar tudo do Title Screen, 
+ se for preciso adicionar algo novo, avise e coloque um comentario para ajudar a entender / não quebrar a logica
+ */
+
 public class UIMenuManager : MonoBehaviour {
     [Header("Gerenciador das telas")]
     [Tooltip("Linkar os Objetos de quais estes menus pertencem")]
