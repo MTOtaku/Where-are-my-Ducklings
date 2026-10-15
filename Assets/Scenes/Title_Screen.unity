@@ -277,10 +277,12 @@ MonoBehaviour:
   optionsButton: {fileID: 1512550410}
   creditsButton: {fileID: 1841936971}
   quitButton: {fileID: 1995834210}
+  languageButton: {fileID: 897389410}
   backsButtons:
   - {fileID: 1964773889}
   - {fileID: 949322660}
   - {fileID: 748079075}
+  currentLanguageIndex: 0
 --- !u!4 &723355056
 Transform:
   m_ObjectHideFlags: 0
@@ -386,6 +388,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &897389410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4944565872185735672, guid: 6fbd4f24fe12acd48af903eb50d62149, type: 3}
+  m_PrefabInstance: {fileID: 5426252257344637792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b9d62456522a049a5f75f808e25819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GenericButton
 --- !u!114 &949322660 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1040420788482241746, guid: 6fbd4f24fe12acd48af903eb50d62149, type: 3}
@@ -665,10 +678,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelSelect_Panel
       objectReference: {fileID: 0}
-    - target: {fileID: 6732624413243072910, guid: 6a0f0785d7a22f74792391d14b8f4b49, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 723355055}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -859,10 +868,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 133575845584729314, guid: 6fbd4f24fe12acd48af903eb50d62149, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 723355055}
     - target: {fileID: 530037836545523277, guid: 6fbd4f24fe12acd48af903eb50d62149, type: 3}
       propertyPath: m_Name
       value: Options_Panel
@@ -964,10 +969,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7813980172072473426, guid: 4a7da23c8d67ea04cb5d3ad45e1082b4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 723355055}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

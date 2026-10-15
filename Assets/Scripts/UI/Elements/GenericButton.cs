@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace RockPaperPistol.UI.Elements
 {
-    public class GenericButton : MonoBehaviour
+    public class GenericButton : TextLocalize
     {
         private Action _clickAction;
         private Action<int, GenericButton> _clickSelectedAction;

@@ -146,7 +146,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b9d62456522a049a5f75f808e25819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenericButton
+  text:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  objectText: {fileID: 8506596325744029414}
   _button: {fileID: 4867470345957187727}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &8271690172012209772
 GameObject:
   m_ObjectHideFlags: 0

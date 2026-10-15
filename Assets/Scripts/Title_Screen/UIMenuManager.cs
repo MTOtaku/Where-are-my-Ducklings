@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using RockPaperPistol.UI.Elements;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 /*
  Aqui vai ser pra gerenciar tudo do Title Screen, 
@@ -22,19 +23,25 @@ public class UIMenuManager : MonoBehaviour {
     [SerializeField] private GenericButton optionsButton;
     [SerializeField] private GenericButton creditsButton;
     [SerializeField] private GenericButton quitButton;
-    [SerializeField] private List<GenericButton> backsButtons;
+    [SerializeField] private GenericButton languageButton;
 
+    [SerializeField] private List<GenericButton> backsButtons;
+    [SerializeField] private int currentLanguageIndex;
     void Start()
     {
         startButton.Initialize(OpenLevelSelectPanel);
-        creditsButton.Initialize(OpenSettingsPanel);
-        optionsButton.Initialize(OpenCreditsPanel);
+        creditsButton.Initialize(OpenCreditsPanel);
+        optionsButton.Initialize(OpenSettingsPanel);
         quitButton.Initialize(QuitGame);
+        languageButton.Initialize(ChangeCurrentLanguage);
 
         foreach(var backButton in backsButtons)
         {
             backButton.Initialize(BackToTitleScreen);
         }
+
+        var myLocale = LocalizationSettings.AvailableLocales.GetLocale(LocalizationSettings.SelectedLocale.Identifier);
+        currentLanguageIndex = LocalizationSettings.AvailableLocales.Locales.IndexOf(myLocale);
     }
 
     //Ativar somente o painel escolhido
@@ -64,5 +71,14 @@ public class UIMenuManager : MonoBehaviour {
     public void QuitGame(){
         Debug.Log("Saindo do jogo");
         Application.Quit();
+    }
+
+    public void ChangeCurrentLanguage()
+    {
+        currentLanguageIndex ++;
+        if(currentLanguageIndex == LocalizationSettings.AvailableLocales.Locales.Count)
+            currentLanguageIndex = 0;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
+        GameEvents.Localization.OnChangeLocalization?.Invoke();
     }
 }

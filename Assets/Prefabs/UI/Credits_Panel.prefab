@@ -88,6 +88,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Back_Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 198490091520
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableReference.m_TableCollectionName
+      value: GUID:a916afd3e4f9c7247b1d31b4d613f282
+      objectReference: {fileID: 0}
     - target: {fileID: 8038586817939752707, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

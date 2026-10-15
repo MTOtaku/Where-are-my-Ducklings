@@ -167,6 +167,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start_Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 34949984256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableReference.m_TableCollectionName
+      value: GUID:a916afd3e4f9c7247b1d31b4d613f282
+      objectReference: {fileID: 0}
     - target: {fileID: 8038586817939752707, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -284,6 +292,14 @@ PrefabInstance:
     - target: {fileID: 2285840330353196575, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Name
       value: Quit_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 138310217728
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableReference.m_TableCollectionName
+      value: GUID:a916afd3e4f9c7247b1d31b4d613f282
       objectReference: {fileID: 0}
     - target: {fileID: 8038586817939752707, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Pivot.x
@@ -403,6 +419,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Options_Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 98393026560
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableReference.m_TableCollectionName
+      value: GUID:a916afd3e4f9c7247b1d31b4d613f282
+      objectReference: {fileID: 0}
     - target: {fileID: 8038586817939752707, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -520,6 +544,14 @@ PrefabInstance:
     - target: {fileID: 2285840330353196575, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Name
       value: Credits_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 120123715584
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableReference.m_TableCollectionName
+      value: GUID:a916afd3e4f9c7247b1d31b4d613f282
       objectReference: {fileID: 0}
     - target: {fileID: 8038586817939752707, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Pivot.x
