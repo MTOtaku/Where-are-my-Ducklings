@@ -1941,7 +1941,7 @@ GameObject:
   - component: {fileID: 896623696}
   - component: {fileID: 896623695}
   - component: {fileID: 896623694}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vento (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2403,7 +2403,7 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   groundMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
 --- !u!4 &1295385126
 Transform:
   m_ObjectHideFlags: 0
@@ -2495,6 +2495,10 @@ MonoBehaviour:
   visual: {fileID: 294180336}
   input: {fileID: 1295385128}
   duckMovement: {fileID: 1295385125}
+  energyDecaySpeed: 20
+  stateThreshold: 25
+  flapTimeThreshold: 0.22
+  maxTimeWithoutInput: 0.5
 --- !u!114 &1295385131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2580,7 +2584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1311187123
 Transform:
   m_ObjectHideFlags: 0
@@ -3567,7 +3571,7 @@ GameObject:
   - component: {fileID: 1998860862}
   - component: {fileID: 1998860861}
   - component: {fileID: 1998860864}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vento
   m_TagString: Untagged
   m_Icon: {fileID: 0}
