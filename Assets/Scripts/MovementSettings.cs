@@ -37,12 +37,16 @@ public class MovementSettings : ScriptableObject {
     public float diveGravity = 2.5f;           // asas fechadas
     public float flapThrustPerScreen = 25f;    // sustentação por altura de tela arrastada
     public float maxFlapPerStep = 0.1f;
-    public float wingDeadzone = 0.0005f;
     public float airForwardSpeed = 3f;
     public float airAccel = 8f;
     public float maxAirSpeed = 10f;
     public float windLift = 20f;
     public float minAirTime = 0.4f;
+    public float dragSmoothTime = 0.08f;        // suavização do arrasto (segundos)
+    public float wingEnterSpeed = 0.15f;        // velocidade vertical para trocar a postura (alturas de tela/s)
+    public float steerEnterSpeed = 0.25f;       // velocidade horizontal para trocar a direção
+    public float steerDominance = 0.6f;         // o arrasto horizontal precisa vencer o vertical por essa proporção
+    public float flapThrustDownPerScreen = 0f;  // sustentação ao arrastar para baixo (0 = só o arrasto para cima sobe)
     
     [Header("Aquático")]
     public float minForce = 4f;
