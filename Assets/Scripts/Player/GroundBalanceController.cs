@@ -36,6 +36,9 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
     }
 
     void OnLeanTapped(int dir){
+        if (duckMovement.Mode != MovementModeType.Ground) return; 
+        if (State == DuckState.Fallen || State == DuckState.GettingUp || !duckMovement.IsGrounded) return;
+
         if (State == DuckState.Fallen || State == DuckState.GettingUp || !duckMovement.IsGrounded) return;
 
         holdBalanced = false;
