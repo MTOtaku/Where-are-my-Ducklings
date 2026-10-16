@@ -39,8 +39,6 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
         if (duckMovement.Mode != MovementModeType.Ground) return; 
         if (State == DuckState.Fallen || State == DuckState.GettingUp || !duckMovement.IsGrounded) return;
 
-        if (State == DuckState.Fallen || State == DuckState.GettingUp || !duckMovement.IsGrounded) return;
-
         holdBalanced = false;
         State = DuckState.Balancing;
         angle += dir * movementSettings.tapStep * (1f + heat * movementSettings.heatPenalty);
@@ -50,20 +48,22 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
     public void Tick(float dt){
         heat = Mathf.Max(0f, heat - movementSettings.heatDecay * dt);
         bool grounded = duckMovement.IsGrounded;
-
-        // Perdeu o chão (caiu de um lugar alto): vira Ballistic
-        ungroundedTime = grounded ? 0f : ungroundedTime + dt;
-        if (ungroundedTime > movementSettings.coyoteTime) {
-            duckMovement.SetMode(MovementModeType.Ballistic);
-            return;
+        
+        if (duckMovement.Mode == MovementModeType.Ground) {
+            ungroundedTime = grounded ? 0f : ungroundedTime + dt;
+            if (ungroundedTime > movementSettings.coyoteTime) {
+                duckMovement.SetMode(MovementModeType.Ballistic);
+                return;
+            }
+        } else {
+            ungroundedTime = 0f; // Mantém resetado se estiver voando, nadando ou já em queda
         }
 
         bool canWalk = State != DuckState.Fallen && State != DuckState.GettingUp;
 
-        if (grounded) {
+        if (grounded && duckMovement.Mode == MovementModeType.Ground) {
             var v = rigidBody.linearVelocity;
             if (canWalk) {
-                // Andar = cair de forma controlada: a velocidade acompanha a inclinação
                 float target = Mathf.Clamp(angle * movementSettings.speedPerDegree, -movementSettings.maxWalkSpeed, movementSettings.maxWalkSpeed);
                 v.x = Mathf.MoveTowards(v.x, target, movementSettings.walkAccel * dt);
             }
@@ -87,8 +87,7 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
         }
 
         if (holdBalanced) return;
-
-        // Pêndulo invertido: quanto maior a inclinação e a velocidade de queda, mais difícil recuperar
+        
         float fallAccel = Mathf.Sin(angle * Mathf.Deg2Rad) * movementSettings.instability;
         angVel += (fallAccel - angVel * movementSettings.angularDamping) * dt;
         angle += angVel * dt;

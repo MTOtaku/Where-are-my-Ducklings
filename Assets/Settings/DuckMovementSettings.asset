@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bfd6f4a04596864dac983cddb45d636, type: 3}
   m_Name: DuckMovementSettings
   m_EditorClassIdentifier: Assembly-CSharp::MovementSettings
-  coyoteTime: 0.08
+  coyoteTime: 0.15
   getUpDuration: 0.4
   ballisticGravity: 3
   ballisticMinAirTime: 0.1
@@ -35,12 +35,16 @@ MonoBehaviour:
   diveGravity: 2.5
   flapThrustPerScreen: 25
   maxFlapPerStep: 0.1
-  wingDeadzone: 0.0005
   airForwardSpeed: 3
   airAccel: 8
   maxAirSpeed: 10
   windLift: 20
   minAirTime: 0.4
+  dragSmoothTime: 0.08
+  wingEnterSpeed: 0.15
+  steerEnterSpeed: 0.25
+  steerDominance: 0.6
+  flapThrustDownPerScreen: 0
   minForce: 4
   maxForce: 30
   maxDragScreenFraction: 0.25

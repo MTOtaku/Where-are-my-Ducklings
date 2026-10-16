@@ -19,7 +19,7 @@ public class DuckMovement : MonoBehaviour {
 
     public event Action OnFell;
     public event Action<DuckState, DuckState> StateChanged;
-    public event Action<float> Landed;                        // velocidade do impacto
+    public event Action<float> Landed;
 
     public MovementModeType Mode { get; private set; }
     public DuckState State { get; private set; }
@@ -44,7 +44,7 @@ public class DuckMovement : MonoBehaviour {
         if (Mode != MovementModeType.Water && cooledDown)
             SetMode(MovementModeType.Water);
     }
-
+    
     public void SetMode(MovementModeType type){
         if (current != null && Mode == MovementModeType.Water && type != MovementModeType.Water)
             lastWaterExitTime = Time.time;
@@ -57,22 +57,33 @@ public class DuckMovement : MonoBehaviour {
             MovementModeType.Ballistic => ballistic,
             _ => ground
         };
+        
+        input.ClearPointerDelta(); 
+    
         current.Enter();
         PublishState();
     }
-
+    
     void FixedUpdate(){
-        // Alçar voo: dentro de uma corrente de vento, arrastando na vertical
+        // Alçar voo: permitido se estiver no chão ou em queda livre (Ballistic)
         bool canTakeOff = Mode == MovementModeType.Ground || Mode == MovementModeType.Ballistic;
-        if (canTakeOff && InWind &&
-            input.PointerDeltaAccum.magnitude / Screen.height > movementSettings.takeoffDragFraction)
+    
+        // Mede estritamente o arrasto VERTICAL absoluto do mouse
+        float verticalDrag = Mathf.Abs(input.PointerDeltaAccum.y) / Screen.height;
+
+        // Se estiver sob efeito do vento E arrastar o mouse na vertical, decola
+        if (canTakeOff && InWind && verticalDrag > movementSettings.takeoffDragFraction)
+        {
             SetMode(MovementModeType.Flying);
+        }
 
         current?.Tick(Time.fixedDeltaTime);
 
+        // Garante que o input só acumule se estiver voando, limpando nos outros modos
         if (Mode != MovementModeType.Flying) input.ClearPointerDelta();
         PublishState();
     }
+
 
     void PublishState(){
         if (current == null) return;

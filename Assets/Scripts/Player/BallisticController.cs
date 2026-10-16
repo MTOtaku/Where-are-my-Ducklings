@@ -13,7 +13,7 @@ public class BallisticController : MonoBehaviour, IMovementMode {
     public void Enter(){
         airTime = 0f;
         peakFallSpeed = 0f;
-        rigidBody.gravityScale = movementSettings.ballisticGravity;   // a velocidade atual é mantida
+        rigidBody.gravityScale = movementSettings.ballisticGravity;
     }
 
     public void Exit() { }
@@ -22,7 +22,7 @@ public class BallisticController : MonoBehaviour, IMovementMode {
         airTime += dt;
         peakFallSpeed = Mathf.Max(peakFallSpeed, -rigidBody.linearVelocity.y);
 
-        if (airTime > movementSettings.ballisticMinAirTime && duckMovement.IsGrounded)
+        if (airTime > movementSettings.ballisticMinAirTime && duckMovement.IsGrounded && rigidBody.linearVelocity.y <= 0.1f)
         {
             duckMovement.NotifyLanded(peakFallSpeed);
             duckMovement.SetMode(MovementModeType.Ground);
