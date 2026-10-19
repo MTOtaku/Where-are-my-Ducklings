@@ -37,7 +37,12 @@ public class DuckMovement : MonoBehaviour {
     }
     public string LastTransition { get; private set; } = "-";
 
+    // Só para o HUD de debug: quantas vezes o FixedUpdate rodou e qual controller está ativo
+    public int FixedTicks { get; private set; }
+    public string CurrentController => current == null ? "NULL" : current.GetType().Name;
+
     IMovementMode current;
+    Action takeOffLeft, takeOffRight;
     float lastWindTime = -1f;
     float lastWaterExitTime = -10f;
 
@@ -45,15 +50,17 @@ public class DuckMovement : MonoBehaviour {
         ground.Fell += () => OnFell?.Invoke();
         
         if (input != null) {
-            input.FlapLeftPressed += TryTakeOffByFlap;
-            input.FlapRightPressed += TryTakeOffByFlap;
+            takeOffLeft = () => TryTakeOffByFlap(true);
+            takeOffRight = () => TryTakeOffByFlap(false);
+            input.FlapLeftPressed += takeOffLeft;
+            input.FlapRightPressed += takeOffRight;
         }
     }
-    
+
     void OnDestroy() {
         if (input != null) {
-            input.FlapLeftPressed -= TryTakeOffByFlap;
-            input.FlapRightPressed -= TryTakeOffByFlap;
+            input.FlapLeftPressed -= takeOffLeft;
+            input.FlapRightPressed -= takeOffRight;
         }
     }
     
@@ -90,20 +97,24 @@ public class DuckMovement : MonoBehaviour {
         PublishState();
     }
     
-    private void TryTakeOffByFlap() {
+    private void TryTakeOffByFlap(bool leftWing) {
         bool canTakeOff = Mode == MovementModeType.Ground || Mode == MovementModeType.Ballistic;
-        
+
         if (canTakeOff && InWind) {
             SetMode(MovementModeType.Flying, "decolou: batida de asas iniciada no vento");
+            flying.RegisterTakeoffFlap(leftWing);
         }
     }
+
     void FixedUpdate(){
-        current?.Tick(Time.fixedDeltaTime);
+        FixedTicks++;
         
+        current?.Tick(Time.fixedDeltaTime);
+
+        // O delta do mouse só é usado na mira da água; nos outros modos não deixamos acumular
         if (Mode != MovementModeType.Flying) input.ClearPointerDelta();
         PublishState();
     }
-
 
     void PublishState(){
         if (current == null) return;
