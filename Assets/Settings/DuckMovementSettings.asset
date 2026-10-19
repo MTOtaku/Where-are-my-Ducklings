@@ -37,7 +37,7 @@ MonoBehaviour:
   maxFlapPerStep: 0.1
   airForwardSpeed: 3
   airAccel: 8
-  maxAirSpeed: 10
+  maxAirSpeed: 15
   windLift: 20
   minAirTime: 0.4
   dragSmoothTime: 0.08

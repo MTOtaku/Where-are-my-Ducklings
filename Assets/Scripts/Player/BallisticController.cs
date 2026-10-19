@@ -21,7 +21,7 @@ public class BallisticController : MonoBehaviour, IMovementMode {
         rotationDeadWeightSpeed = Random.Range(-250f, 250f);
     }
 
-    public void Exit() { }
+    public void Exit() { visual.localRotation = Quaternion.identity; }
 
     public void Tick(float dt){
         airTime += dt;

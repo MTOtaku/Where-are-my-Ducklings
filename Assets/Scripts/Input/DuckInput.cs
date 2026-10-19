@@ -27,6 +27,8 @@ public class DuckInput : MonoBehaviour {
         pointerDeltaAccum = Vector2.zero;
         return direction;
     }
+    public bool FlapLeftHeld => flapLeft != null && flapLeft.IsPressed();
+    public bool FlapRightHeld => flapRight != null && flapRight.IsPressed();
     
     public void ClearPointerDelta() => pointerDeltaAccum = Vector2.zero;
 
