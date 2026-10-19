@@ -2,9 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RockPaperPistol.UI.Elements
-{
-    public class GenericButton : TextLocalize
+public class GenericButton : TextLocalize
     {
         private Action _clickAction;
         private Action<int, GenericButton> _clickSelectedAction;
@@ -35,4 +33,3 @@ namespace RockPaperPistol.UI.Elements
             _button.interactable = isInteractable;
         }
     }
-}
