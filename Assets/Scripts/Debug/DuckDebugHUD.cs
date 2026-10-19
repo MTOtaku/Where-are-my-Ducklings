@@ -16,28 +16,48 @@ public class DuckDebugHUD : MonoBehaviour {
         GUI.Label(new Rect(10, 30, 700, 25), $"No chão: {duck.IsGrounded}    Vento: {duck.InWind}    Última água: {water}");
 
         string angle = ground != null ? $"{ground.Angle:0.0}°" : "(campo Ground vazio)";
-        GUI.Label(new Rect(10, 50, 700, 25), $"Inclinação: {angle}    Velocidade X: {duck.Body.linearVelocity.x:0.00}");
+        GUI.Label(new Rect(10, 50, 700, 25), $"Inclinação Terrestre: {angle}    Velocidade X: {duck.Body.linearVelocity.x:0.00}");
 
         if (flight != null) {
             GUI.Label(new Rect(10, 70, 700, 25),
-                $"Asas: {flight.WingState}    Direção: {flight.Facing:+0;-0}    Velocidade Y: {duck.Body.linearVelocity.y:0.00}");
+                $"Asas: {flight.WingState}    Direção (Facing): {flight.Facing:+0;-0}    Velocidade Y: {duck.Body.linearVelocity.y:0.00}");
             
-            float energy = (float)typeof(FlightController).GetField("verticalEnergy", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(flight);
-            float lastSign = (float)typeof(FlightController).GetField("lastMouseYSign", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(flight);
-            float timeSinceDir = (float)typeof(FlightController).GetField("timeSinceDirectionChange", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(flight);
-            
-            float decay = (float)typeof(FlightController).GetField("energyDecaySpeed", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(flight);
-            float threshold = (float)typeof(FlightController).GetField("stateThreshold", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(flight);
-            float flapTime = (float)typeof(FlightController).GetField("flapTimeThreshold", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(flight);
+            float currentAirRotation = (float)typeof(FlightController)
+                .GetField("currentAirRotation", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetValue(flight);
 
+            object lastKeyEnum = typeof(FlightController)
+                .GetField("lastKey", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetValue(flight);
+            string ultimaAsa = lastKeyEnum != null ? lastKeyEnum.ToString() : "None";
+
+            float glideTimer = (float)typeof(FlightController)
+                .GetField("glideTimer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetValue(flight);
+
+            // Leitura das configurações limitadoras para exibição no HUD
+            float maxSafeAngle = (float)typeof(FlightController)
+                .GetField("maxSafeAngle", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetValue(flight);
+            float torqueSpeed = (float)typeof(FlightController)
+                .GetField("torqueRotationSpeed", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetValue(flight);
+            float flapForce = (float)typeof(FlightController)
+                .GetField("flapImpulseForce", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetValue(flight);
+
+            // Renderiza na tela os dados dinâmicos do voo alternado
             GUI.Label(new Rect(10, 95, 700, 25), 
-                $"[INPUT] Energia Vertical: {energy:0.0} | Último Sinal: {lastSign:+0;-0} | Tempo Inversão: {timeSinceDir:0.00}s");
+                $"[QWOP DINÂMICO] Rotação do Voo: {currentAirRotation:0.0}° | Última Asa: {ultimaAsa} | Timer Sustentação: {glideTimer:0.00}s");
             
             GUI.Label(new Rect(10, 115, 700, 25), 
-                $"[CONFIG] Decay: {decay} | Threshold: {threshold} | Janela Flap: {flapTime}s");
+                $"[QWOP CONFIGS] Ângulo Limite: {maxSafeAngle}° | Força Torque: {torqueSpeed} | Força Impulso: {flapForce}");
         }
         else {
             GUI.Label(new Rect(10, 70, 700, 25), "(campo Flight vazio: arraste o Duck para ele)");
         }
+        
+        GUI.Label(new Rect(10, 140, 900, 25), $"[TRANSIÇÃO] {duck.LastTransition}");
+        GUI.Label(new Rect(10, 160, 900, 25), $"[CHÃO AGORA] tocado por: {duck.GroundedBy}");
     }
 }

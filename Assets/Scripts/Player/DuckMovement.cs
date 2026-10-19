@@ -27,12 +27,36 @@ public class DuckMovement : MonoBehaviour {
     public Rigidbody2D Body => rigidBody;
     public bool IsGrounded => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
     public bool InWind => Time.time - lastWindTime < 0.1f;
+    
+    // Só para o HUD de debug: qual objeto está fazendo o pato contar como "no chão" e por que o modo mudou por último
+    public string GroundedBy {
+        get {
+            var hit = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
+            return hit != null ? hit.name : "-";
+        }
+    }
+    public string LastTransition { get; private set; } = "-";
 
     IMovementMode current;
     float lastWindTime = -1f;
     float lastWaterExitTime = -10f;
 
-    void Awake() => ground.Fell += () => OnFell?.Invoke();
+    void Awake() {
+        ground.Fell += () => OnFell?.Invoke();
+        
+        if (input != null) {
+            input.FlapLeftPressed += TryTakeOffByFlap;
+            input.FlapRightPressed += TryTakeOffByFlap;
+        }
+    }
+    
+    void OnDestroy() {
+        if (input != null) {
+            input.FlapLeftPressed -= TryTakeOffByFlap;
+            input.FlapRightPressed -= TryTakeOffByFlap;
+        }
+    }
+    
     void Start() => SetMode(MovementModeType.Ground);
 
     public void NotifyWind() => lastWindTime = Time.time;
@@ -45,7 +69,9 @@ public class DuckMovement : MonoBehaviour {
             SetMode(MovementModeType.Water);
     }
     
-    public void SetMode(MovementModeType type){
+    public void SetMode(MovementModeType type, string reason = ""){
+        LastTransition = $"{Mode} -> {type} | {reason} | chão: {GroundedBy} | t={Time.time:0.0}s";
+
         if (current != null && Mode == MovementModeType.Water && type != MovementModeType.Water)
             lastWaterExitTime = Time.time;
 
@@ -64,22 +90,16 @@ public class DuckMovement : MonoBehaviour {
         PublishState();
     }
     
-    void FixedUpdate(){
-        // Alçar voo: permitido se estiver no chão ou em queda livre (Ballistic)
+    private void TryTakeOffByFlap() {
         bool canTakeOff = Mode == MovementModeType.Ground || Mode == MovementModeType.Ballistic;
-    
-        // Mede estritamente o arrasto VERTICAL absoluto do mouse
-        float verticalDrag = Mathf.Abs(input.PointerDeltaAccum.y) / Screen.height;
-
-        // Se estiver sob efeito do vento E arrastar o mouse na vertical, decola
-        if (canTakeOff && InWind && verticalDrag > movementSettings.takeoffDragFraction)
-        {
-            SetMode(MovementModeType.Flying);
+        
+        if (canTakeOff && InWind) {
+            SetMode(MovementModeType.Flying, "decolou: batida de asas iniciada no vento");
         }
-
+    }
+    void FixedUpdate(){
         current?.Tick(Time.fixedDeltaTime);
-
-        // Garante que o input só acumule se estiver voando, limpando nos outros modos
+        
         if (Mode != MovementModeType.Flying) input.ClearPointerDelta();
         PublishState();
     }

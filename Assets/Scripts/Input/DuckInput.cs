@@ -8,13 +8,15 @@ public class DuckInput : MonoBehaviour {
     [SerializeField] private string actionMapName = "Player";
     
     InputActionAsset asset;
-    private InputAction leanLeft, leanRight, pointerDelta, pointerPosition, aim, quack;
+    private InputAction leanLeft, leanRight, pointerDelta, pointerPosition, aim, quack, flapLeft, flapRight;
     private Vector2 pointerDeltaAccum;
     
     public event Action<int> LeanTapped; // -1 pra esquerda, +1 pra direita
     public event Action AimStarted;
     public event Action AimReleased;
     public event Action QuackPressed;
+    public event Action FlapLeftPressed;
+    public event Action FlapRightPressed;
 
     public InputActionAsset Asset => asset;
     public Vector2 PointerPosition => pointerPosition.ReadValue<Vector2>();
@@ -46,6 +48,8 @@ public class DuckInput : MonoBehaviour {
         pointerPosition = map.FindAction("PointerPosition", true);
         aim = map.FindAction("Aim", true);
         quack = map.FindAction("Quack", true);
+        flapLeft = map.FindAction("FlapLeft", true);
+        flapRight = map.FindAction("FlapRight", true);
         
         map.Enable();
     }
@@ -57,6 +61,8 @@ public class DuckInput : MonoBehaviour {
         aim.performed += OnAimStarted;
         aim.canceled += OnAimReleased;
         quack.performed += OnQuack;
+        if (flapLeft != null) flapLeft.performed += OnFlapLeft;
+        if (flapRight != null) flapRight.performed += OnFlapRight;
     }
     
     void OnDisable(){
@@ -66,6 +72,9 @@ public class DuckInput : MonoBehaviour {
         aim.performed       -= OnAimStarted;
         aim.canceled        -= OnAimReleased;
         quack.performed     -= OnQuack;
+        
+        if (flapLeft != null) flapLeft.performed -= OnFlapLeft;
+        if (flapRight != null) flapRight.performed -= OnFlapRight;
     }
     
     void Update() => pointerDeltaAccum += pointerDelta.ReadValue<Vector2>();
@@ -75,7 +84,9 @@ public class DuckInput : MonoBehaviour {
     void OnAimStarted(InputAction.CallbackContext _) => AimStarted?.Invoke();
     void OnAimReleased(InputAction.CallbackContext _) => AimReleased?.Invoke();
     void OnQuack(InputAction.CallbackContext _) => QuackPressed?.Invoke();
-    
+    void OnFlapLeft(InputAction.CallbackContext _) => FlapLeftPressed?.Invoke();
+    void OnFlapRight(InputAction.CallbackContext _) => FlapRightPressed?.Invoke();
+
     // Função de Rebind para quando precisar
 
     public void StartRebind(InputAction action, int bindingIndex, Action onDone = null){

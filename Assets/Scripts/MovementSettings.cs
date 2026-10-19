@@ -48,6 +48,12 @@ public class MovementSettings : ScriptableObject {
     public float steerDominance = 0.6f;         // o arrasto horizontal precisa vencer o vertical por essa proporção
     public float flapThrustDownPerScreen = 0f;  // sustentação ao arrastar para baixo (0 = só o arrasto para cima sobe)
     
+    [Header("Aéreo - Planeio (asas abertas)")]
+    public float glideMaxFallSpeed = 1.5f;      // velocidade máxima de queda ao planar (0 = mantém a altura)
+    public float glideBrake = 30f;              // quão rápido freia a queda ao abrir as asas (m/s²)
+    public float glideForwardSpeed = 4f;        // velocidade para frente ao planar
+    public float glideDecayMultiplier = 0.5f;   // menor que 1 = a postura de planeio dura mais depois do último arrasto
+    
     [Header("Aquático")]
     public float minForce = 4f;
     public float maxForce = 14f;
