@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using RockPaperPistol.UI.Elements;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
@@ -27,6 +26,8 @@ public class UIMenuManager : MonoBehaviour {
 
     [SerializeField] private List<GenericButton> backsButtons;
     [SerializeField] private int currentLanguageIndex;
+
+    private static string GAME_SCENE_NAME = "TestsScene"; 
     void Start()
     {
         startButton.Initialize(OpenLevelSelectPanel);
@@ -58,7 +59,8 @@ public class UIMenuManager : MonoBehaviour {
     }
     
     public void OpenLevelSelectPanel(){
-        OpenPanel(levelSelectPanel);
+        //OpenPanel(levelSelectPanel);
+        Utils.LoadScene(GAME_SCENE_NAME);
     }
  
     public void OpenSettingsPanel(){
