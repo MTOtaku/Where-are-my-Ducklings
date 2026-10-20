@@ -18,18 +18,25 @@ public class FlightController : MonoBehaviour, IMovementMode {
     };
 
     [Header("Configurações Aérea")]
-    [SerializeField] private float flapImpulseForce = 13f;         // Força do impulso, na direção em que o pato aponta
-    [SerializeField] private float glideDuration = 0.45f;          // Quanto tempo o impulso dura sustentando o voo
-    [SerializeField] private float rotationPerFlap = 25f;          // Graus que CADA batida gira o pato (para o lado oposto da asa)
-    [SerializeField] private float maxSafeAngle = 80f;             // Ângulo limite antes de cair em Ragdoll
-    [SerializeField] private float landingMaxAngle = 35f;          // Pousar mais torto que isso derruba o pato
-    [SerializeField] private bool ragdollOnRepeatedWing = false;   // Regra extra, NÃO está no texto: mesma asa duas vezes derruba
+    [Tooltip("Velocidade dada pela batida, na direção em que o pato aponta (m/s).")]
+    [SerializeField] private float flapImpulseForce = 13f;
+    [Tooltip("Quanto tempo (segundos) cada batida mantém o pato planando.")]
+    [SerializeField] private float glideDuration = 0.45f;
+    [Tooltip("Graus que CADA batida gira o pato, para o lado oposto da asa.")]
+    [SerializeField] private float rotationPerFlap = 25f;
+    [Tooltip("Desvio máximo (graus) da direção do vento em que o pato decolou. Passou disso, vira Ragdoll. Com vento para cima, 0° é reto para cima.")]
+    [SerializeField] private float maxSafeAngle = 80f;
+    [Tooltip("Pousar mais torto que isso (graus em relação a de pé) derruba o pato.")]
+    [SerializeField] private float landingMaxAngle = 35f;
+    [Tooltip("Regra extra: bater a mesma asa duas vezes seguidas derruba o pato.")]
+    [SerializeField] private bool ragdollOnRepeatedWing = false;
 
     private enum LastPressedKey { None, Left, Right }
     private LastPressedKey lastKey = LastPressedKey.None;
 
     private float glideTimer = 0f;
     private float currentAirRotation = 0f;   // +Z = anti-horário = pato inclinado para a ESQUERDA
+    private float referenceAngle = 0f;       // direção do vento na decolagem: o voo começa apontando para cá
     private float airTime = 0f;
 
     // Flags preenchidas pelos eventos de input e consumidas no passo de física
@@ -40,15 +47,18 @@ public class FlightController : MonoBehaviour, IMovementMode {
         airTime = 0f;
         WingState = Wings.Neutral;
         glideTimer = 0f;
-        
-        currentAirRotation = visual.localRotation.eulerAngles.z;
-        if (currentAirRotation > 180f) currentAirRotation -= 360f;
+
+        // O voo começa apontando na direção do vento da área em que o pato decolou
+        // (0° = cima, +90° = esquerda, -90° = direita, 180° = baixo)
+        referenceAngle = duckMovement.InWind ? duckMovement.WindAngle : 0f;
+        currentAirRotation = referenceAngle;
 
         lastKey = LastPressedKey.None;
         ResetFrameInputs();   // não herda batida pendente de outro modo
 
         float vx = rigidBody.linearVelocity.x;
         if (Mathf.Abs(vx) > 0.1f) Facing = Mathf.Sign(vx);
+        UpdateFacing();
 
         if (input != null) {
             input.FlapLeftPressed += HandleFlapLeftInput;
@@ -104,9 +114,10 @@ public class FlightController : MonoBehaviour, IMovementMode {
             ApplyFlap(leftWing);
         }
 
-        // Ângulo limite: o pato aponta para baixo demais e cai em queda livre
-        if (Mathf.Abs(currentAirRotation) > maxSafeAngle) {
-            TriggerRagdoll($"Ângulo limite atingido ({Mathf.RoundToInt(currentAirRotation)}°)");
+        // Ângulo limite: medido a partir da direção do vento da decolagem (com vento para cima, é o mesmo que antes)
+        float deviation = Mathf.Abs(Mathf.DeltaAngle(referenceAngle, currentAirRotation));
+        if (deviation > maxSafeAngle) {
+            TriggerRagdoll($"Ângulo limite atingido ({Mathf.RoundToInt(deviation)}° de desvio da direção do vento)");
             return;
         }
 
@@ -129,7 +140,7 @@ public class FlightController : MonoBehaviour, IMovementMode {
     private void ApplyFlap(bool leftWing){
         glideTimer = glideDuration;
 
-        // 1) Impulso na direção em que o pato está apontado (na primeira batida o ângulo é 0: reto para cima)
+        // 1) Impulso na direção em que o pato está apontado (na primeira batida é a direção do vento)
         float rad = currentAirRotation * Mathf.Deg2Rad;
         Vector2 pointing = new Vector2(-Mathf.Sin(rad), Mathf.Cos(rad));
         rigidBody.linearVelocity = pointing * flapImpulseForce;
@@ -137,7 +148,11 @@ public class FlightController : MonoBehaviour, IMovementMode {
         // 2) Giro para o lado OPOSTO da asa: asa direita gira para a esquerda (+Z), asa esquerda para a direita (-Z)
         currentAirRotation += (leftWing ? -1f : 1f) * rotationPerFlap;
 
-        // Facing acompanha para onde o pato aponta depois do giro (usado por animação e HUD)
+        UpdateFacing();
+    }
+
+    // Facing acompanha para onde o pato aponta (usado por animação e HUD)
+    private void UpdateFacing(){
         float lean = -Mathf.Sin(currentAirRotation * Mathf.Deg2Rad);
         if (Mathf.Abs(lean) > 0.05f) Facing = Mathf.Sign(lean);
     }
@@ -152,7 +167,8 @@ public class FlightController : MonoBehaviour, IMovementMode {
 
         Vector2 v = rigidBody.linearVelocity;
 
-        if (duckMovement.InWind) v.y += movementSettings.windLift * dt;
+        // O vento empurra para a direção marcada na área (cima, baixo, esquerda, direita ou diagonal)
+        if (duckMovement.InWind) v += duckMovement.WindDirection * (movementSettings.windLift * dt);
 
         if (WingState == Wings.Open) {
             // O planeio segue para onde o pato aponta: inclinado para a esquerda, desliza para a esquerda
@@ -166,7 +182,8 @@ public class FlightController : MonoBehaviour, IMovementMode {
         rigidBody.linearVelocity = Vector2.ClampMagnitude(v, movementSettings.maxAirSpeed);
         
         if (airTime > movementSettings.minAirTime && duckMovement.IsGrounded && !duckMovement.InWind && v.y < -0.2f) {
-            if (Mathf.Abs(currentAirRotation) > landingMaxAngle) {
+            // Pouso: o pato precisa estar de pé (0°), não importa para que lado o vento da decolagem ia
+            if (Mathf.Abs(Mathf.DeltaAngle(currentAirRotation, 0f)) > landingMaxAngle) {
                 TriggerRagdoll("Pousou torto com o bico no chão");
             }
             else {

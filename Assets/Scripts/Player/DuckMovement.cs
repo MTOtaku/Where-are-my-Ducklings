@@ -27,6 +27,11 @@ public class DuckMovement : MonoBehaviour {
     public Rigidbody2D Body => rigidBody;
     public bool IsGrounded => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
     public bool InWind => Time.time - lastWindTime < 0.1f;
+
+    // Direção do último vento em que o pato esteve (só vale enquanto InWind)
+    public Vector2 WindDirection { get; private set; } = Vector2.up;
+    // Mesma direção como ângulo: 0° = cima, +90° = esquerda, -90° = direita, 180° = baixo
+    public float WindAngle { get; private set; }
     
     // Só para o HUD de debug: qual objeto está fazendo o pato contar como "no chão" e por que o modo mudou por último
     public string GroundedBy {
@@ -66,7 +71,14 @@ public class DuckMovement : MonoBehaviour {
     
     void Start() => SetMode(MovementModeType.Ground);
 
-    public void NotifyWind() => lastWindTime = Time.time;
+    // Chamado pela WindCurrent a cada passo de física enquanto o pato está na área.
+    // Se duas áreas se sobrepõem, vale a última que avisou.
+    public void NotifyWind(WindCurrent wind) {
+        lastWindTime = Time.time;
+        WindDirection = wind.Direction;
+        WindAngle = wind.AngleDegrees;
+    }
+
     public void NotifyLanded(float impactSpeed) => Landed?.Invoke(impactSpeed);
 
     public void EnterWater(WaterZone zone){

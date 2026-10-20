@@ -58,7 +58,7 @@ public class MovementSettings : ScriptableObject {
     public float airAccel = 8f;
     [Tooltip("Velocidade máxima no ar (m/s). Mantenha MAIOR que o 'Flap Impulse Force' do FlightController, senão a batida é cortada.")]
     public float maxAirSpeed = 10f;
-    [Tooltip("Força de sustentação da corrente de vento. Maior = o vento empurra o pato para cima com mais força.")]
+    [Tooltip("Força do vento na direção marcada na área de ar (cima, baixo, esquerda ou direita). Maior = empurra o pato com mais força.")]
     public float windLift = 20f;
     [Tooltip("Tempo mínimo (segundos) no estado de voo antes de poder pousar. Evita pousar logo depois de decolar.")]
     public float minAirTime = 0.4f;
