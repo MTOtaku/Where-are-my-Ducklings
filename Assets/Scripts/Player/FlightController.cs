@@ -3,12 +3,12 @@
 public class FlightController : MonoBehaviour, IMovementMode {
     public enum Wings { Neutral, Open, Closed }
 
-    [SerializeField] MovementSettings movementSettings;
-    [SerializeField] Rigidbody2D rigidBody;
-    [SerializeField] Transform visual;
-    [SerializeField] DuckInput input; 
-    [SerializeField] DuckMovement duckMovement;
-    
+    [SerializeField] private MovementSettings movementSettings;
+    [SerializeField] private Rigidbody2D rigidBody;
+    [SerializeField] private Transform visual;
+    [SerializeField] private DuckInput input; 
+    [SerializeField] private DuckMovement duckMovement;
+
     public Wings WingState { get; private set; }
     public float Facing { get; private set; } = 1f;  
     public DuckState State => WingState switch {
@@ -17,114 +17,188 @@ public class FlightController : MonoBehaviour, IMovementMode {
         _ => DuckState.Airborne 
     };
 
-    private float verticalEnergy = 0f; 
-    private float lastMouseYSign = 0f;
-    private float timeSinceDirectionChange = 0f;
-    
-    // Cronometro pra desativar o voo ao parar de bater asas
-    private float timeSinceLastInput = 0f; 
+    [Header("Configurações Aérea")]
+    [Tooltip("Velocidade dada pela batida, na direção em que o pato aponta (m/s).")]
+    [SerializeField] private float flapImpulseForce = 13f;
+    [Tooltip("Quanto tempo (segundos) cada batida mantém o pato planando.")]
+    [SerializeField] private float glideDuration = 0.45f;
+    [Tooltip("Graus que CADA batida gira o pato, para o lado oposto da asa.")]
+    [SerializeField] private float rotationPerFlap = 25f;
+    [Tooltip("Desvio máximo (graus) da direção do vento em que o pato decolou. Passou disso, vira Ragdoll. Com vento para cima, 0° é reto para cima.")]
+    [SerializeField] private float maxSafeAngle = 80f;
+    [Tooltip("Pousar mais torto que isso (graus em relação a de pé) derruba o pato.")]
+    [SerializeField] private float landingMaxAngle = 35f;
+    [Tooltip("Regra extra: bater a mesma asa duas vezes seguidas derruba o pato.")]
+    [SerializeField] private bool ragdollOnRepeatedWing = false;
 
-    [Header("Configurações do Sensor de Voo")]
-    [SerializeField] float energyDecaySpeed = 50f;     
-    [SerializeField] float stateThreshold = 25f;       
-    [SerializeField] float flapTimeThreshold = 0.22f;  
-    [SerializeField] float maxTimeWithoutInput = 0.5f; // Tempo tolerado sem mexer o mouse antes de cair em queda livre
+    private enum LastPressedKey { None, Left, Right }
+    private LastPressedKey lastKey = LastPressedKey.None;
 
-    float airTime;
+    private float glideTimer = 0f;
+    private float currentAirRotation = 0f;   // +Z = anti-horário = pato inclinado para a ESQUERDA
+    private float referenceAngle = 0f;       // direção do vento na decolagem: o voo começa apontando para cá
+    private float airTime = 0f;
+
+    // Flags preenchidas pelos eventos de input e consumidas no passo de física
+    private bool frameLeftPressed = false;
+    private bool frameRightPressed = false;
 
     public void Enter(){
         airTime = 0f;
         WingState = Wings.Neutral;
-        verticalEnergy = 0f;
-        lastMouseYSign = 0f;
-        timeSinceDirectionChange = 0f;
-        timeSinceLastInput = 0f;
+        glideTimer = 0f;
+
+        // O voo começa apontando na direção do vento da área em que o pato decolou
+        // (0° = cima, +90° = esquerda, -90° = direita, 180° = baixo)
+        referenceAngle = duckMovement.InWind ? duckMovement.WindAngle : 0f;
+        currentAirRotation = referenceAngle;
+
+        lastKey = LastPressedKey.None;
+        ResetFrameInputs();   // não herda batida pendente de outro modo
 
         float vx = rigidBody.linearVelocity.x;
         if (Mathf.Abs(vx) > 0.1f) Facing = Mathf.Sign(vx);
+        UpdateFacing();
+
+        if (input != null) {
+            input.FlapLeftPressed += HandleFlapLeftInput;
+            input.FlapRightPressed += HandleFlapRightInput;
+        }
     }
 
-    public void Exit() { visual.localRotation = Quaternion.identity; }
+    public void Exit(){ 
+        if (input != null) {
+            input.FlapLeftPressed -= HandleFlapLeftInput;
+            input.FlapRightPressed -= HandleFlapRightInput;
+        }
+
+        visual.localRotation = Quaternion.identity; 
+    }
+    
+    private void HandleFlapLeftInput() => frameLeftPressed = true;
+    private void HandleFlapRightInput() => frameRightPressed = true;
+
+    // Chamado pelo DuckMovement: a batida que iniciou o voo conta como a primeira batida
+    public void RegisterTakeoffFlap(bool leftWing){
+        if (leftWing) frameLeftPressed = true;
+        else frameRightPressed = true;
+    }
+
+    // Aviso no Console: o impulso é cortado por maxAirSpeed em ApplyFlightPhysics, então valores acima dele não têm efeito
+    private void OnValidate(){
+        if (movementSettings != null && flapImpulseForce > movementSettings.maxAirSpeed)
+            Debug.LogWarning($"FlightController: flapImpulseForce ({flapImpulseForce}) é maior que maxAirSpeed ({movementSettings.maxAirSpeed}). " +
+                             "A velocidade real da batida fica limitada a maxAirSpeed.", this);
+    }
 
     public void Tick(float dt){
         airTime += dt;
-        timeSinceDirectionChange += dt;
-        timeSinceLastInput += dt;
 
-        Vector2 rawDelta = input.ConsumePointerDelta();
-        float currentY = rawDelta.y;
+        // Q e E no mesmo passo de física: nada acontece
+        if (frameLeftPressed && frameRightPressed) {
+            ResetFrameInputs();
+            return;
+        }
 
-        // Decaimento natural da energia de voo para caso o jogador pare de bater a asa
-        verticalEnergy = Mathf.MoveTowards(verticalEnergy, 0f, energyDecaySpeed * dt);
+        if (frameLeftPressed || frameRightPressed) {
+            bool leftWing = frameLeftPressed;
+            var wing = leftWing ? LastPressedKey.Left : LastPressedKey.Right;
+            ResetFrameInputs();
 
-        if (Mathf.Abs(currentY) > 1f) {
-            timeSinceLastInput = 0f; 
-            float currentSign = Mathf.Sign(currentY);
-
-            if (currentSign != lastMouseYSign && lastMouseYSign != 0f) {
-                if (timeSinceDirectionChange <= flapTimeThreshold) {
-                    ApplyFlapForce();
-                }
-                timeSinceDirectionChange = 0f; 
+            if (ragdollOnRepeatedWing && lastKey == wing) {
+                TriggerRagdoll(leftWing ? "Asa esquerda batida duas vezes seguidas" : "Asa direita batida duas vezes seguidas");
+                return;
             }
 
-            lastMouseYSign = currentSign;
-
-            // input para encher o tanque de energia mais rápido ao arrastar
-            verticalEnergy += currentY * 0.8f; 
-            verticalEnergy = Mathf.Clamp(verticalEnergy, -100f, 100f);
+            lastKey = wing;
+            ApplyFlap(leftWing);
         }
 
-        //Definição dos estados continuos 
-        if (verticalEnergy > stateThreshold) {
-            WingState = Wings.Open;   // Planar
+        // Ângulo limite: medido a partir da direção do vento da decolagem (com vento para cima, é o mesmo que antes)
+        float deviation = Mathf.Abs(Mathf.DeltaAngle(referenceAngle, currentAirRotation));
+        if (deviation > maxSafeAngle) {
+            TriggerRagdoll($"Ângulo limite atingido ({Mathf.RoundToInt(deviation)}° de desvio da direção do vento)");
+            return;
         }
-        else if (verticalEnergy < -stateThreshold) {
-            WingState = Wings.Closed; // Mergulhar
+
+        // Sustentação aérea
+        if (glideTimer > 0f) {
+            glideTimer -= dt;
+            WingState = Wings.Open;
         }
         else {
             WingState = Wings.Neutral;
-
-            // Se o jogador não mexer o mouse pelo tempo limite E não estiver no vento: cai em Ballistic
-            if (timeSinceLastInput > maxTimeWithoutInput && !duckMovement.InWind) {
-                duckMovement.SetMode(MovementModeType.Ballistic);
-                return; 
+            if (!duckMovement.InWind && rigidBody.linearVelocity.y < -9f) {
+                TriggerRagdoll("Queda sem sustentação (sem bater asas)");
+                return;
             }
-        }
-        
-        if (Mathf.Abs(rawDelta.x) > movementSettings.steerEnterSpeed) {
-            Facing = Mathf.Sign(rawDelta.x);
         }
 
         ApplyFlightPhysics(dt);
     }
-    private void ApplyFlapForce(){
-        //Debug.Log("Bateu asas! Força aplicada.");
-        var v = rigidBody.linearVelocity;
-        v.y += movementSettings.flapThrustPerScreen; 
-        rigidBody.linearVelocity = v;
+
+    private void ApplyFlap(bool leftWing){
+        glideTimer = glideDuration;
+
+        // 1) Impulso na direção em que o pato está apontado (na primeira batida é a direção do vento)
+        float rad = currentAirRotation * Mathf.Deg2Rad;
+        Vector2 pointing = new Vector2(-Mathf.Sin(rad), Mathf.Cos(rad));
+        rigidBody.linearVelocity = pointing * flapImpulseForce;
+
+        // 2) Giro para o lado OPOSTO da asa: asa direita gira para a esquerda (+Z), asa esquerda para a direita (-Z)
+        currentAirRotation += (leftWing ? -1f : 1f) * rotationPerFlap;
+
+        UpdateFacing();
+    }
+
+    // Facing acompanha para onde o pato aponta (usado por animação e HUD)
+    private void UpdateFacing(){
+        float lean = -Mathf.Sin(currentAirRotation * Mathf.Deg2Rad);
+        if (Mathf.Abs(lean) > 0.05f) Facing = Mathf.Sign(lean);
     }
 
     private void ApplyFlightPhysics(float dt){
+        visual.localRotation = Quaternion.Euler(0f, 0f, currentAirRotation);
+        
         rigidBody.gravityScale = WingState switch {
-            Wings.Open => movementSettings.glideGravity,
-            Wings.Closed => movementSettings.diveGravity,
+            Wings.Open => movementSettings.glideGravity * 0.7f,
             _ => movementSettings.neutralGravity
         };
 
-        var v = rigidBody.linearVelocity;
-    
-        if (duckMovement.InWind) v.y += movementSettings.windLift * dt;
-    
-        v.x = Mathf.MoveTowards(v.x, Facing * movementSettings.airForwardSpeed, movementSettings.airAccel * dt);
-        rigidBody.linearVelocity = Vector2.ClampMagnitude(v, movementSettings.maxAirSpeed);
+        Vector2 v = rigidBody.linearVelocity;
 
-        visual.localRotation = Quaternion.Euler(0f, 0f, Mathf.Clamp(v.y * 4f, -40f, 40f) * Facing);
+        // O vento empurra para a direção marcada na área (cima, baixo, esquerda, direita ou diagonal)
+        if (duckMovement.InWind) v += duckMovement.WindDirection * (movementSettings.windLift * dt);
+
+        if (WingState == Wings.Open) {
+            // O planeio segue para onde o pato aponta: inclinado para a esquerda, desliza para a esquerda
+            float targetX = -Mathf.Sin(currentAirRotation * Mathf.Deg2Rad) * movementSettings.glideForwardSpeed;
+            v.x = Mathf.MoveTowards(v.x, targetX, movementSettings.airAccel * dt);
+        }
+        else {
+            v.x = Mathf.MoveTowards(v.x, 0f, (movementSettings.airAccel * 0.4f) * dt);
+        }
+
+        rigidBody.linearVelocity = Vector2.ClampMagnitude(v, movementSettings.maxAirSpeed);
         
         if (airTime > movementSettings.minAirTime && duckMovement.IsGrounded && !duckMovement.InWind && v.y < -0.2f) {
-            duckMovement.NotifyLanded(-v.y);
-            duckMovement.SetMode(MovementModeType.Ground);
+            // Pouso: o pato precisa estar de pé (0°), não importa para que lado o vento da decolagem ia
+            if (Mathf.Abs(Mathf.DeltaAngle(currentAirRotation, 0f)) > landingMaxAngle) {
+                TriggerRagdoll("Pousou torto com o bico no chão");
+            }
+            else {
+                duckMovement.NotifyLanded(-v.y);
+                duckMovement.SetMode(MovementModeType.Ground, "Flying: Pouso bem sucedido");
+            }
         }
     }
 
+    private void ResetFrameInputs(){
+        frameLeftPressed = false;
+        frameRightPressed = false;
+    }
+
+    private void TriggerRagdoll(string reason){
+        duckMovement.SetMode(MovementModeType.Ballistic, reason);
+    }
 }

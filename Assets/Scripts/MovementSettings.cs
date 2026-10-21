@@ -10,54 +10,77 @@ public class MovementSettings : ScriptableObject {
      */
     
     [Header("Estados")]
-    public float coyoteTime = 0.08f;           // tolerância ao perder o chão antes de virar Ballistic
+    [Tooltip("Tolerância (segundos) ao perder o chão antes de virar Ballistic. Evita virar ragdoll em pequenos desníveis.")]
+    public float coyoteTime = 0.08f;
+    [Tooltip("Duração (segundos) da animação de levantar depois de cair no chão.")]
     public float getUpDuration = 0.4f;
+    [Tooltip("Gravidade do pato enquanto está em Ballistic (ragdoll). Maior = cai mais rápido.")]
     public float ballisticGravity = 3f;
+    [Tooltip("Tempo mínimo (segundos) em Ballistic antes de poder voltar ao chão. Evita pousar no mesmo instante em que foi lançado.")]
     public float ballisticMinAirTime = 0.1f;
-    public float waterReentryCooldown = 0.2f;  // evita re-entrar na água no instante do lançamento
+    [Tooltip("Tempo (segundos) depois de sair da água em que não é possível entrar nela de novo. Evita re-entrar na água no instante do lançamento.")]
+    public float waterReentryCooldown = 0.2f;
     
     [Header("Terrestre")]
-    public float tapStep = 12f;            // graus por toque
-    public float heatPenalty = 0.1f;       // apertar rápido aumenta o giro
+    [Tooltip("Quantos graus o pato inclina a cada toque em A/D.")]
+    public float tapStep = 12f;
+    [Tooltip("Penalidade por apertar rápido demais: quanto maior, mais o pato gira sozinho ao spammar A/D.")]
+    public float heatPenalty = 0.1f;
+    [Tooltip("Quão rápido o 'calor' (penalidade de apertar rápido) esfria quando o jogador para de spammar.")]
     public float heatDecay = 2f;
-    public float instability = 250f;       // quão rápido tomba sozinho
+    [Tooltip("Quão rápido o pato tomba sozinho para o lado em que já está inclinado. Maior = mais difícil de equilibrar.")]
+    public float instability = 250f;
+    [Tooltip("Amortecimento do giro: maior = a inclinação se estabiliza mais rápido e balança menos.")]
     public float angularDamping = 1.2f;
-    public float maxLeanAngle = 80f;       // passou disso, cai
-    public float speedPerDegree = 0.15f;   // inclinação vira velocidade (20° = 3 m/s)
-    public float walkAccel = 20f;          // quão rápido a velocidade alcança o alvo
-    public float friction = 8f;            // só para frear quando caído
+    [Tooltip("Inclinação máxima em graus. Passou disso, o pato cai (estado Fallen).")]
+    public float maxLeanAngle = 80f;
+    [Tooltip("Quanto de velocidade cada grau de inclinação gera. Ex.: 0.15 -> 20° dá 3 m/s.")]
+    public float speedPerDegree = 0.15f;
+    [Tooltip("Quão rápido a velocidade alcança a velocidade alvo (aceleração). Maior = resposta mais brusca.")]
+    public float walkAccel = 20f;
+    [Tooltip("Atrito usado apenas para frear o pato quando ele está caído.")]
+    public float friction = 8f;
+    [Tooltip("Velocidade máxima de caminhada no chão (m/s).")]
     public float maxWalkSpeed = 5f;
+    [Tooltip("Quanto tempo (segundos) o pato fica caído antes de poder se levantar.")]
     public float fallenDuration = 2f;
+    [Tooltip("Gravidade do pato quando está no chão.")]
     public float groundGravity = 3f;
     
     [Header("Aéreo")]
-    public float takeoffDragFraction = 0.01f;  // arrasto mínimo (fração da altura da tela) para alçar voo
+    [Tooltip("Gravidade no ar quando o pato não está planando.")]
     public float neutralGravity = 1.2f;
-    public float glideGravity = 0.4f;          // asas abertas
-    public float diveGravity = 2.5f;           // asas fechadas
-    public float flapThrustPerScreen = 25f;    // sustentação por altura de tela arrastada
-    public float maxFlapPerStep = 0.1f;
-    public float airForwardSpeed = 3f;
+    [Tooltip("Gravidade durante o planeio. Menor = cai mais devagar.")]
+    public float glideGravity = 0.4f;
+    [Tooltip("Velocidade para frente ao planar (m/s). Vale para o lado em que o pato está inclinado.")]
+    public float glideForwardSpeed = 4f;
+    [Tooltip("Quão rápido a velocidade no ar alcança a velocidade alvo. Maior = resposta mais brusca.")]
     public float airAccel = 8f;
+    [Tooltip("Velocidade máxima no ar (m/s). Mantenha MAIOR que o 'Flap Impulse Force' do FlightController, senão a batida é cortada.")]
     public float maxAirSpeed = 10f;
+    [Tooltip("Força do vento na direção marcada na área de ar (cima, baixo, esquerda ou direita). Maior = empurra o pato com mais força.")]
     public float windLift = 20f;
+    [Tooltip("Tempo mínimo (segundos) no estado de voo antes de poder pousar. Evita pousar logo depois de decolar.")]
     public float minAirTime = 0.4f;
-    public float dragSmoothTime = 0.08f;        // suavização do arrasto (segundos)
-    public float wingEnterSpeed = 0.15f;        // velocidade vertical para trocar a postura (alturas de tela/s)
-    public float steerEnterSpeed = 0.25f;       // velocidade horizontal para trocar a direção
-    public float steerDominance = 0.6f;         // o arrasto horizontal precisa vencer o vertical por essa proporção
-    public float flapThrustDownPerScreen = 0f;  // sustentação ao arrastar para baixo (0 = só o arrasto para cima sobe)
     
     [Header("Aquático")]
+    [Tooltip("Força mínima do estilingue (m/s), usada quando o arrasto é curto.")]
     public float minForce = 4f;
+    [Tooltip("Força máxima do estilingue (m/s), usada com arrasto completo.")]
     public float maxForce = 14f;
-    public float maxDragScreenFraction = 0.25f; // arrasto que dá força máxima
+    [Tooltip("Fração da altura da tela que o arrasto precisa ter para dar a força máxima. Menor = chega na força máxima com menos arrasto.")]
+    public float maxDragScreenFraction = 0.25f;
+    [Tooltip("Arrasto mínimo (em pixels) para o estilingue contar como um lançamento. Evita lançar sem querer com um clique.")]
     public float minDragPixels = 12f;
-    public float buoyancyPerForce = 1.2f;       // empuxo proporcional ao impulso
+    [Tooltip("Quanto o empuxo da água cresce com a força do lançamento. Maior = o pato sobe mais rápido ao mirar para cima.")]
+    public float buoyancyPerForce = 1.2f;
+    [Tooltip("Resistência da água debaixo d'água. Maior = o pato desacelera mais rápido ao nadar.")]
     public float underwaterDrag = 1.5f;
-    public float exitMultiplier = 1.4f;         // "água gera impulso maior"
+    [Tooltip("Multiplicador do impulso ao sair da água. Maior que 1 = a água dá um impulso extra ao lançar o pato.")]
+    public float exitMultiplier = 1.4f;
+    [Tooltip("Força que mantém o pato na superfície da água (efeito de mola). Maior = volta mais rápido para a superfície.")]
     public float surfaceSpring = 8f;
+    [Tooltip("Resistência do movimento na superfície da água. Maior = o pato balança menos.")]
     public float surfaceDrag = 3f;
-    public float launchGravity = 3f;
     
 }

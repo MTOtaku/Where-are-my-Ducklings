@@ -46,17 +46,15 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
     }
 
     public void Tick(float dt){
+        if (duckMovement.Mode != MovementModeType.Ground) return;
+        
         heat = Mathf.Max(0f, heat - movementSettings.heatDecay * dt);
         bool grounded = duckMovement.IsGrounded;
         
-        if (duckMovement.Mode == MovementModeType.Ground) {
-            ungroundedTime = grounded ? 0f : ungroundedTime + dt;
-            if (ungroundedTime > movementSettings.coyoteTime) {
-                duckMovement.SetMode(MovementModeType.Ballistic);
-                return;
-            }
-        } else {
-            ungroundedTime = 0f; // Mantém resetado se estiver voando, nadando ou já em queda
+        ungroundedTime = grounded ? 0f : ungroundedTime + dt;
+        if (ungroundedTime > movementSettings.coyoteTime) {
+            duckMovement.SetMode(MovementModeType.Ballistic, "Ground: perdeu o chão");
+            return;
         }
 
         bool canWalk = State != DuckState.Fallen && State != DuckState.GettingUp;
