@@ -7,4 +7,9 @@ public static class GameEvents
         {
             public static Action OnChangeLocalization;
         }
+
+        public static class GameSystem
+        {
+            public static Action<BoxCollider2D> OnStartLevel;
+        }
     }
