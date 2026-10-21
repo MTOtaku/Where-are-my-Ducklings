@@ -55,12 +55,12 @@ public class SwimController : MonoBehaviour, IMovementMode {
         rigidBody.linearVelocity = dir * force;
 
         if (dir.y < 0f) {
-            phase = Phase.Submerged;     // jogou-se para dentro da água
+            phase = Phase.Submerged;     
             storedForce = force;
             diveDir = dir;
         }
         else {
-            duckMovement.SetMode(MovementModeType.Ballistic);   // saltou para fora
+            duckMovement.SetMode(MovementModeType.Ballistic);  
         }
     }
 
@@ -74,6 +74,13 @@ public class SwimController : MonoBehaviour, IMovementMode {
 
     public void Tick(float dt){
         if (Water == null) { duckMovement.SetMode(MovementModeType.Ballistic); return; }
+
+        // Saiu da área da água (pelo fundo ou pelas laterais): a física da água acaba aqui.
+        if (!Water.Contains(rigidBody.position)) {
+            duckMovement.SetMode(MovementModeType.Ballistic, "Water: saiu da área da água");
+            return;
+        }
+
         if (aiming) UpdateAim();
 
         var v = rigidBody.linearVelocity;

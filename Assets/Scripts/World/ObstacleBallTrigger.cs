@@ -5,7 +5,7 @@ public class ObstacleBallTrigger : MonoBehaviour {
     [SerializeField] private ObstacleBall obstacleBall;
 
     private void OnTriggerEnter2D(Collider2D other){
-        if (other.GetComponent<ObstacleBall>() != null) {
+        if (obstacleBall != null && other.GetComponent<ObstacleBall>() == obstacleBall) {
             obstacleBall.TriggerRespawn();
         }
     }

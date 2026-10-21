@@ -41,15 +41,11 @@ public class ObstacleBall : MonoBehaviour {
 
     private IEnumerator RespawnRoutine(){
         isRespawning = true;
-
-        Debug.Log($"Respawn em {respawnDelay} segundos.");
-
+        
         yield return new WaitForSeconds(respawnDelay);
 
         Respawn();
-
-        Debug.Log("Bola retornou ao ponto A!");
-
+        
         isRespawning = false;
     }
 
@@ -57,8 +53,6 @@ public class ObstacleBall : MonoBehaviour {
         rb.position = pointA.position;
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
-
-        Debug.Log("Respawn Ativado");
     }
 
     private void OnDrawGizmosSelected(){
