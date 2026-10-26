@@ -11,6 +11,8 @@ public class FlightController : MonoBehaviour, IMovementMode {
 
     public Wings WingState { get; private set; }
     public float Facing { get; private set; } = 1f;  
+    // Avisa a cada batida de asa APLICADA (true = esquerda/Q, false = direita/E). Usado pela animação
+    public event System.Action<bool> Flapped;
     public DuckState State => WingState switch {
         Wings.Open => DuckState.FlyGlide,
         Wings.Closed => DuckState.FlyDive,
@@ -138,6 +140,7 @@ public class FlightController : MonoBehaviour, IMovementMode {
     }
 
     private void ApplyFlap(bool leftWing){
+        Flapped?.Invoke(leftWing); 
         glideTimer = glideDuration;
 
         // 1) Impulso na direção em que o pato está apontado (na primeira batida é a direção do vento)
