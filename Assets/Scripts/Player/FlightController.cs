@@ -40,6 +40,7 @@ public class FlightController : MonoBehaviour, IMovementMode {
     private float currentAirRotation = 0f;   // +Z = anti-horário = pato inclinado para a ESQUERDA
     private float referenceAngle = 0f;       // direção do vento na decolagem: o voo começa apontando para cá
     private float airTime = 0f;
+    private float outsideWindTime = 0f;      // tempo seguido voando fora da área de vento
 
     // Flags preenchidas pelos eventos de input e consumidas no passo de física
     private bool frameLeftPressed = false;
@@ -47,6 +48,7 @@ public class FlightController : MonoBehaviour, IMovementMode {
 
     public void Enter(){
         airTime = 0f;
+        outsideWindTime = 0f;
         WingState = Wings.Neutral;
         glideTimer = 0f;
 
@@ -95,6 +97,18 @@ public class FlightController : MonoBehaviour, IMovementMode {
 
     public void Tick(float dt){
         airTime += dt;
+        
+        // Limite de voo fora do vento: evita voar pelo mapa para sempre. Dentro de uma área de vento o contador zera
+        if (duckMovement.InWind) {
+            outsideWindTime = 0f;
+        }
+        else if (movementSettings.maxFlightTimeOutsideWind > 0f) {
+            outsideWindTime += dt;
+            if (outsideWindTime >= movementSettings.maxFlightTimeOutsideWind) {
+                TriggerRagdoll($"Tempo máximo de voo fora do vento ({movementSettings.maxFlightTimeOutsideWind:0.#}s)");
+                return;
+            }
+        }
 
         // Q e E no mesmo passo de física: nada acontece
         if (frameLeftPressed && frameRightPressed) {

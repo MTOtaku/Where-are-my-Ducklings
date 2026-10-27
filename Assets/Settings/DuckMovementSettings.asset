@@ -35,6 +35,7 @@ MonoBehaviour:
   airAccel: 8
   maxAirSpeed: 15
   windLift: 20
+  maxFlightTimeOutsideWind: 3
   minAirTime: 0.4
   minForce: 4
   maxForce: 20

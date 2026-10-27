@@ -462,6 +462,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: mother
+      value: 
+      objectReference: {fileID: 4021182615496995732}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: spriteFacesRight
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1082,6 +1090,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: mother
+      value: 
+      objectReference: {fileID: 4021182615496995732}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: spriteFacesRight
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1098,6 +1114,18 @@ PrefabInstance:
     - target: {fileID: 1952590062477439369, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
       propertyPath: m_Name
       value: Filhote (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229373732762923463, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: color1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229373732762923463, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: color1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229373732762923463, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: color1.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7066110816609972360, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1138,6 +1166,26 @@ PrefabInstance:
     - target: {fileID: 7066110816609972360, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: mother
+      value: 
+      objectReference: {fileID: 4021182615496995732}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: spriteFacesRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715615233919091423, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715615233919091423, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715615233919091423, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1752,6 +1800,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7066110816609972360, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: mother
+      value: 
+      objectReference: {fileID: 4021182615496995732}
+    - target: {fileID: 7368422210740893581, guid: e5e28eaaf6e91bd46af5338cbf91e80f, type: 3}
+      propertyPath: spriteFacesRight
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

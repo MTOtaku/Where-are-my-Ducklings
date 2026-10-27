@@ -19,7 +19,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: 129.521}
+        value: {x: 0, y: 0, z: 129.5206}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -28,7 +28,7 @@ AnimationClip:
         outWeight: {x: 0, y: 0, z: 0}
       - serializedVersion: 3
         time: 0.1
-        value: {x: 0, y: 0, z: 44.955}
+        value: {x: 0, y: 0, z: 129.5206}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -44,7 +44,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: -176.327}
+        value: {x: 0, y: 0, z: -176.32675}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -53,7 +53,7 @@ AnimationClip:
         outWeight: {x: 0, y: 0, z: 0}
       - serializedVersion: 3
         time: 0.1
-        value: {x: 0, y: 0, z: -45.634094}
+        value: {x: 0, y: 0, z: -176.32675}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -181,7 +181,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 129.521
+        value: 129.5206
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -190,7 +190,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.1
-        value: 44.955
+        value: 129.5206
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -271,7 +271,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -176.327
+        value: -176.32675
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -280,7 +280,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.1
-        value: -45.634094
+        value: -176.32675
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -303,7 +303,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
+    attribute: m_LocalEulerAngles.x
     path: Torso/Asa_E
     classID: 4
     script: {fileID: 0}
@@ -327,7 +327,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
+    attribute: m_LocalEulerAngles.z
     path: Torso/Asa_E
     classID: 4
     script: {fileID: 0}
