@@ -45586,6 +45586,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5587533876007759435, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
+      propertyPath: glideDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587533876007759435, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
+      propertyPath: flapImpulseForce
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
