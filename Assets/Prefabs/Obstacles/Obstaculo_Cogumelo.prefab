@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163700756768474575}
   - component: {fileID: 6038463547539527975}
-  - component: {fileID: 6553196009550552096}
+  - component: {fileID: 5712029956527194341}
   m_Layer: 0
   m_Name: Obstaculo_Cogumelo
   m_TagString: Untagged
@@ -80,7 +80,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.9112778}
   m_EdgeRadius: 0
---- !u!114 &6553196009550552096
+--- !u!114 &5712029956527194341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,11 +89,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5129744367229944703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6419aa6dafc44caa97b3863f503f606, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b9959026e34a78428bc83a6b3db0358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MushroomObstacle
-  launchForce: 50
-  activationCooldown: 2
+  launchForce: 15
+  activationCooldown: 0.5
   replaceVelocity: 0
 --- !u!1 &5820909239138310403
 GameObject:

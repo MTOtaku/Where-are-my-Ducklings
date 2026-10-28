@@ -2680,11 +2680,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstaculo_Cogumelo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5712029956527194341, guid: 813f907409e331f4fa410b9128fbc1b3, type: 3}
+      propertyPath: replaceVelocity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6553196009550552096, guid: 813f907409e331f4fa410b9128fbc1b3, type: 3}
       propertyPath: replaceVelocity
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6553196009550552096, guid: 813f907409e331f4fa410b9128fbc1b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3337,7 +3342,7 @@ Transform:
   m_GameObject: {fileID: 1721058288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60, y: 23.6, z: -10}
+  m_LocalPosition: {x: 13.509999, y: 107.14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4230,11 +4235,11 @@ PrefabInstance:
       objectReference: {fileID: 1295385126}
     - target: {fileID: 7462488128817000459, guid: 3db772afbac82b8418fe329fac992472, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -60
+      value: 13.509999
       objectReference: {fileID: 0}
     - target: {fileID: 7462488128817000459, guid: 3db772afbac82b8418fe329fac992472, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 107.14
       objectReference: {fileID: 0}
     - target: {fileID: 7462488128817000459, guid: 3db772afbac82b8418fe329fac992472, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4271,6 +4276,10 @@ PrefabInstance:
     - target: {fileID: 8110512955021331632, guid: 3db772afbac82b8418fe329fac992472, type: 3}
       propertyPath: m_Name
       value: CinemachineCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110512955021331632, guid: 3db772afbac82b8418fe329fac992472, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4649,11 +4658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4021182615615289096, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -60
+      value: 13.51
       objectReference: {fileID: 0}
     - target: {fileID: 4021182615615289096, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.6
+      value: 107.14
       objectReference: {fileID: 0}
     - target: {fileID: 4021182615615289096, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4972,7 +4981,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstaculo_Cogumelo
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5712029956527194341, guid: 813f907409e331f4fa410b9128fbc1b3, type: 3}
+      propertyPath: launchForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712029956527194341, guid: 813f907409e331f4fa410b9128fbc1b3, type: 3}
+      propertyPath: replaceVelocity
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6553196009550552096, guid: 813f907409e331f4fa410b9128fbc1b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

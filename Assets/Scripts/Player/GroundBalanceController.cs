@@ -7,6 +7,7 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
     [SerializeField] Transform visual;
     [SerializeField] DuckInput input;
     [SerializeField] DuckMovement duckMovement;
+    [SerializeField] private float visualRotationOffset = 90f;
 
     public event Action Fell;
     public event Action GotUp;
@@ -32,7 +33,7 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
 
     public void Exit(){
         input.LeanTapped -= OnLeanTapped;
-        visual.localRotation = Quaternion.identity;
+        visual.localRotation = Quaternion.Euler(0f, 0f, visualRotationOffset);
     }
 
     void OnLeanTapped(int dir){
@@ -76,10 +77,10 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
                 timer -= dt;
                 if (timer <= 0f) { State = DuckState.GettingUp; timer = movementSettings.getUpDuration; }
                 return;
-
+            
             case DuckState.GettingUp:
                 timer -= dt;
-                visual.localRotation = Quaternion.Euler(0f, 0f, fallSign * 90f * Mathf.Clamp01(timer / movementSettings.getUpDuration));
+                visual.localRotation = Quaternion.Euler(0f, 0f, visualRotationOffset - 90f * Mathf.Clamp01(timer / movementSettings.getUpDuration));
                 if (timer <= 0f) FinishGetUp();
                 return;
         }
@@ -89,7 +90,8 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
         float fallAccel = Mathf.Sin(angle * Mathf.Deg2Rad) * movementSettings.instability;
         angVel += (fallAccel - angVel * movementSettings.angularDamping) * dt;
         angle += angVel * dt;
-        visual.localRotation = Quaternion.Euler(0f, 0f, -angle);
+        float direction = visual.lossyScale.x < 0 ? -1f : 1f;
+        visual.localRotation = Quaternion.Euler(0f, 0f, visualRotationOffset - angle * direction);
 
         if (Mathf.Abs(angle) > movementSettings.maxLeanAngle) Fall();
     }
@@ -98,7 +100,7 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
         State = DuckState.Fallen;
         timer = movementSettings.fallenDuration;
         fallSign = -Mathf.Sign(angle);
-        visual.localRotation = Quaternion.Euler(0f, 0f, fallSign * 90f);
+        visual.localRotation = Quaternion.Euler(0f, 0f, 0f);
         Fell?.Invoke();
     }
 
@@ -106,7 +108,7 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
         angle = angVel = 0f;
         holdBalanced = true;
         State = DuckState.Idle;
-        visual.localRotation = Quaternion.identity;
+        visual.localRotation = Quaternion.Euler(0, 0f, visualRotationOffset);
         GotUp?.Invoke();
     }
 }
