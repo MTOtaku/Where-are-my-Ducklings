@@ -35,10 +35,10 @@ MonoBehaviour:
   airAccel: 8
   maxAirSpeed: 15
   windLift: 20
-  maxFlightTimeOutsideWind: 3
+  maxFlightTimeOutsideWind: 0.6
   minAirTime: 0.4
   minForce: 4
-  maxForce: 10
+  maxForce: 11
   maxDragScreenFraction: 0.25
   minDragPixels: 12
   buoyancyPerForce: 1.2
