@@ -12,4 +12,9 @@ public static class GameEvents
         {
             public static Action<BoxCollider2D> OnStartLevel;
         }
+
+        public static class UI
+        {
+            public static Action<bool, Action> OnFadeAnimation;
+        }
     }
