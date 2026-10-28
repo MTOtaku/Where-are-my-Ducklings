@@ -28921,7 +28921,7 @@ Transform:
   m_GameObject: {fileID: 1721058288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.1, y: 28.87, z: -10}
+  m_LocalPosition: {x: -31.44, y: 28.07, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30215,11 +30215,11 @@ PrefabInstance:
       objectReference: {fileID: 1295385126}
     - target: {fileID: 7462488128817000459, guid: 3db772afbac82b8418fe329fac992472, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.1
+      value: -31.44
       objectReference: {fileID: 0}
     - target: {fileID: 7462488128817000459, guid: 3db772afbac82b8418fe329fac992472, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.87
+      value: 28.07
       objectReference: {fileID: 0}
     - target: {fileID: 7462488128817000459, guid: 3db772afbac82b8418fe329fac992472, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45576,11 +45576,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4021182615615289096, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.1
+      value: -31.44
       objectReference: {fileID: 0}
     - target: {fileID: 4021182615615289096, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.1
+      value: 27.3
       objectReference: {fileID: 0}
     - target: {fileID: 4021182615615289096, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45620,6 +45620,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5587533876007759435, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
       propertyPath: flapImpulseForce
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599927073214083823, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
+      propertyPath: followRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599927073214083823, guid: d6d4e939e71170c44b5cf896287d5433, type: 3}
+      propertyPath: searchRadius
       value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
