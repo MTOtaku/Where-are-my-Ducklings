@@ -29,33 +29,19 @@ MonoBehaviour:
   maxWalkSpeed: 5
   fallenDuration: 2
   groundGravity: 3
-  takeoffDragFraction: 0.01
   neutralGravity: 1.2
   glideGravity: 0.4
-  diveGravity: 2.5
-  flapThrustPerScreen: 25
-  maxFlapPerStep: 0.1
-  airForwardSpeed: 3
+  glideForwardSpeed: 4
   airAccel: 8
   maxAirSpeed: 15
   windLift: 20
   minAirTime: 0.4
-  dragSmoothTime: 0.08
-  wingEnterSpeed: 0.15
-  steerEnterSpeed: 0.25
-  steerDominance: 0.6
-  flapThrustDownPerScreen: 0
-  glideMaxFallSpeed: 1.5
-  glideBrake: 30
-  glideForwardSpeed: 4
-  glideDecayMultiplier: 0.5
   minForce: 4
-  maxForce: 20
+  maxForce: 10
   maxDragScreenFraction: 0.25
   minDragPixels: 12
   buoyancyPerForce: 1.2
-  underwaterDrag: 1.5
-  exitMultiplier: 0.8
-  surfaceSpring: 8
-  surfaceDrag: 3
-  launchGravity: 3
+  underwaterDrag: 0.8
+  exitMultiplier: 1.8
+  surfaceSpring: 3
+  surfaceDrag: 0
