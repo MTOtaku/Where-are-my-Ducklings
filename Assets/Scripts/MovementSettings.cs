@@ -60,6 +60,8 @@ public class MovementSettings : ScriptableObject {
     public float maxAirSpeed = 10f;
     [Tooltip("Força do vento na direção marcada na área de ar (cima, baixo, esquerda ou direita). Maior = empurra o pato com mais força.")]
     public float windLift = 20f;
+    [Tooltip("Tempo máximo (segundos) voando FORA da área de vento. Estourou, o pato perde o controle e vira Ragdoll (Ballistic). Dentro do vento o contador zera. 0 = sem limite.")]
+    public float maxFlightTimeOutsideWind = 6f;
     [Tooltip("Tempo mínimo (segundos) no estado de voo antes de poder pousar. Evita pousar logo depois de decolar.")]
     public float minAirTime = 0.4f;
     
