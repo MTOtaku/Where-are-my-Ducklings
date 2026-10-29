@@ -38,7 +38,7 @@ MonoBehaviour:
   maxFlightTimeOutsideWind: 0.6
   minAirTime: 0.4
   minForce: 4
-  maxForce: 11
+  maxForce: 11.3
   maxDragScreenFraction: 0.25
   minDragPixels: 12
   buoyancyPerForce: 1.2
