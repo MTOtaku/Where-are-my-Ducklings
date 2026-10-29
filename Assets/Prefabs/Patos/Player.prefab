@@ -36,8 +36,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 30.04019, y: 109.08884, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8296849665621668521}
   - {fileID: 3036522567300666270}
@@ -156,7 +156,7 @@ MonoBehaviour:
   visual: {fileID: 8296849665621668521}
   input: {fileID: 7303211261713389622}
   duckMovement: {fileID: 8704970844402768741}
-  flapImpulseForce: 12
+  flapImpulseForce: 3
   glideDuration: 0.5
   rotationPerFlap: 20
   maxSafeAngle: 150
@@ -247,8 +247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DuckQuack
   input: {fileID: 7303211261713389622}
-  searchRadius: 20
-  followRadius: 7
+  searchRadius: 6
+  followRadius: 3
   quackCooldown: 0.5
   followSpacing: 1
   trailStep: 0.1
@@ -482,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 7768803273305745175}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.00000020861623, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: -0.0000019073486, z: 0}
+  m_LocalPosition: {x: -0.00000047683716, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
