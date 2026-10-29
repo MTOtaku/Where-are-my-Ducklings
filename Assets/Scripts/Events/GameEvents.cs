@@ -17,4 +17,9 @@ public static class GameEvents
         {
             public static Action<bool, Action> OnFadeAnimation;
         }
+
+        public static class AudioSystem
+        {
+            public static Action StartGame;
+        }
     }

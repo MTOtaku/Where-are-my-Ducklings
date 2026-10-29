@@ -1,4 +1,6 @@
 ﻿using System;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class GroundBalanceController : MonoBehaviour, IMovementMode {
@@ -22,6 +24,11 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
     float ungroundedTime;
     float fallSign;
     bool holdBalanced;   // equilibrado por padrão até o primeiro toque
+
+    [SerializeField] private EventReference _walkSound;
+    [SerializeField] private EventReference _fallSound;
+
+    private EventInstance duckSoundInstance;
 
     public void Enter(){
         angle = angVel = heat = ungroundedTime = 0f;
@@ -70,6 +77,11 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
                 v.x = Mathf.MoveTowards(v.x, 0f, movementSettings.friction * dt);
             }
             rigidBody.linearVelocity = v;
+            if(rigidBody.linearVelocity.x != 0)
+            {
+                if(!Utils.IsMusicPlaying(duckSoundInstance))
+                    duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _walkSound);
+            }
         }
 
         switch (State) {
@@ -97,6 +109,9 @@ public class GroundBalanceController : MonoBehaviour, IMovementMode {
     }
 
     void Fall(){
+        if(Utils.IsMusicPlaying(duckSoundInstance))
+            duckSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _fallSound);
         State = DuckState.Fallen;
         timer = movementSettings.fallenDuration;
         fallSign = -Mathf.Sign(angle);

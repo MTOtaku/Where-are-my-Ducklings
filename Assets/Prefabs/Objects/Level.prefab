@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2292790598551465345}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.507, y: -11.281599, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66,7 +66,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 8.506996, y: 11.281599}
+  m_Offset: {x: -58.974792, y: 0.20224762}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -76,7 +76,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 77.41671, y: 38.4994}
+  m_Size: {x: 144.67929, y: 58.879074}
   m_EdgeRadius: 0
 --- !u!1 &5546833469970593997
 GameObject:
@@ -124,3 +124,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelLimits: {fileID: 3063725157498951416}
+  _ambienceSound:
+    Guid:
+      Data1: -677001702
+      Data2: 1109040733
+      Data3: 88336020
+      Data4: 808913102
+    Path: event:/ambience
+  _winSound:
+    Guid:
+      Data1: -1419807839
+      Data2: 1161825619
+      Data3: 523469983
+      Data4: -1480632751
+    Path: event:/victory_mux

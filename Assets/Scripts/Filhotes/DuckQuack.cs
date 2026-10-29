@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 // Fica no Player: escuta o botão de Quack (W), identifica os filhotes pelas duas áreas
@@ -24,6 +26,9 @@ public class DuckQuack : MonoBehaviour {
     [SerializeField] float trailStep = 0.1f;
     [Tooltip("Quantidade máxima de pontos do caminho guardados (com passo de 0.1 m, 300 pontos = ~30 m de trilha).")]
     [SerializeField] int maxTrailPoints = 300;
+    [SerializeField] private EventReference _quackSound;
+
+    private EventInstance duckSoundInstance;
 
     [SerializeField] bool debugLogs;
 
@@ -80,7 +85,8 @@ public class DuckQuack : MonoBehaviour {
         lastQuackTime = Time.time;
 
         Quacked?.Invoke();
-
+        if(!Utils.IsMusicPlaying(duckSoundInstance))
+            duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _quackSound);
         Vector2 origin = transform.position;
 
         for (int i = Duckling.All.Count - 1; i >= 0; i--) {

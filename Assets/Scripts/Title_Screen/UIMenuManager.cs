@@ -27,7 +27,7 @@ public class UIMenuManager : MonoBehaviour {
     [SerializeField] private List<GenericButton> backsButtons;
     [SerializeField] private int currentLanguageIndex;
 
-    private static string GAME_SCENE_NAME = "TestsScene"; 
+    private static string GAME_SCENE_NAME = "LD_2"; 
     void Start()
     {
         startButton.Initialize(OpenLevelSelectPanel);
@@ -59,10 +59,14 @@ public class UIMenuManager : MonoBehaviour {
     }
     
     public void OpenLevelSelectPanel(){
-        //OpenPanel(levelSelectPanel);
+        GameEvents.UI.OnFadeAnimation.Invoke(false, () => FinishFadeAnimation());
+    }
+    
+    private void FinishFadeAnimation()
+    {
+        GameEvents.AudioSystem.StartGame.Invoke();
         Utils.LoadScene(GAME_SCENE_NAME);
     }
- 
     public void OpenSettingsPanel(){
         OpenPanel(settingsPanel);
     }

@@ -139,6 +139,20 @@ MonoBehaviour:
   input: {fileID: 7303211261713389622}
   duckMovement: {fileID: 8704970844402768741}
   visualRotationOffset: 90
+  _walkSound:
+    Guid:
+      Data1: 259719165
+      Data2: 1258380976
+      Data3: 1819980431
+      Data4: -210120682
+    Path: event:/fs_duck
+  _fallSound:
+    Guid:
+      Data1: 2072663827
+      Data2: 1152697732
+      Data3: 1153066417
+      Data4: 872536667
+    Path: event:/fall_duck
 --- !u!114 &2434068631169007136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +176,20 @@ MonoBehaviour:
   maxSafeAngle: 150
   landingMaxAngle: 35
   ragdollOnRepeatedWing: 0
+  _flightSound:
+    Guid:
+      Data1: 1129417689
+      Data2: 1074343261
+      Data3: 2068788378
+      Data4: -677735692
+    Path: event:/wing
+  _windSound:
+    Guid:
+      Data1: -1547152796
+      Data2: 1081718767
+      Data3: 747506561
+      Data4: -1258153896
+    Path: event:/air
 --- !u!114 &8121621628709987556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +206,20 @@ MonoBehaviour:
   rigidBody: {fileID: 314123392097148194}
   input: {fileID: 7303211261713389622}
   duckMovement: {fileID: 8704970844402768741}
+  _enterWaterSound:
+    Guid:
+      Data1: -1498719195
+      Data2: 1207321872
+      Data3: 572570273
+      Data4: -1552975636
+    Path: event:/enter_water
+  _exitWaterSound:
+    Guid:
+      Data1: -1037062474
+      Data2: 1115867604
+      Data3: -1082774608
+      Data4: -1105718874
+    Path: event:/exit_water
 --- !u!114 &5646794517764626599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +295,13 @@ MonoBehaviour:
   followSpacing: 1
   trailStep: 0.1
   maxTrailPoints: 300
+  _quackSound:
+    Guid:
+      Data1: 1769734347
+      Data2: 1250744896
+      Data3: 1377210291
+      Data4: 1209878301
+    Path: event:/quack
   debugLogs: 1
 --- !u!1 &3959524499173522651
 GameObject:

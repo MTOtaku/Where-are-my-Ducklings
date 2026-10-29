@@ -47,8 +47,6 @@ public class LevelObjective : MonoBehaviour {
     public event Action AllDucklingsGathered;
     // Um filhote se perdeu durante a contagem: ela foi cancelada (cancele o fade, se já tinha começado)
     public event Action CountdownCancelled;
-    // A vitória foi ativada. Recebe o tempo final (segundos)
-    public event Action<float> LevelCompleted;
 
     void Awake() {
         Instance = this;
@@ -68,10 +66,9 @@ public class LevelObjective : MonoBehaviour {
 
     void Update() {
         if (IsCompleted) return;
-
         // O tempo da fase fica parado durante a contagem da vitória
         if (IsRunning && !IsCountingDown) ElapsedTime += Time.deltaTime;
-
+        
         bool met = ConditionMet();
 
         if (!IsCountingDown) {
@@ -109,7 +106,6 @@ public class LevelObjective : MonoBehaviour {
         IsCompleted = true;
         IsCountingDown = false;
         IsRunning = false;
-        LevelCompleted?.Invoke(ElapsedTime);
         GameEvents.GameSystem.OnLevelCompleted?.Invoke(ElapsedTime);
     }
 
