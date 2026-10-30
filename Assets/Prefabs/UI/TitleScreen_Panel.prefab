@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
-  m_sharedMaterial: {fileID: 5244409218692787892, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -445,6 +445,20 @@ MonoBehaviour:
     m_LocalVariables: []
   objectText: {fileID: 8895525949134936502}
   _button: {fileID: 5688745121326962655}
+  _hoverSound:
+    Guid:
+      Data1: -1301852247
+      Data2: 1289032338
+      Data3: 156113065
+      Data4: 497616006
+    Path: event:/hover
+  _clickSound:
+    Guid:
+      Data1: -1844067217
+      Data2: 1148380022
+      Data3: 140575116
+      Data4: -1873201623
+    Path: event:/button
   references:
     version: 2
     RefIds: []
@@ -605,6 +619,20 @@ MonoBehaviour:
     m_LocalVariables: []
   objectText: {fileID: 8503665110425369231}
   _button: {fileID: 4864499378570818790}
+  _hoverSound:
+    Guid:
+      Data1: -1301852247
+      Data2: 1289032338
+      Data3: 156113065
+      Data4: 497616006
+    Path: event:/hover
+  _clickSound:
+    Guid:
+      Data1: -1844067217
+      Data2: 1148380022
+      Data3: 140575116
+      Data4: -1873201623
+    Path: event:/button
   references:
     version: 2
     RefIds: []
@@ -765,6 +793,20 @@ MonoBehaviour:
     m_LocalVariables: []
   objectText: {fileID: 6740204406635718951}
   _button: {fileID: 7497154200532445006}
+  _hoverSound:
+    Guid:
+      Data1: -1301852247
+      Data2: 1289032338
+      Data3: 156113065
+      Data4: 497616006
+    Path: event:/hover
+  _clickSound:
+    Guid:
+      Data1: -1844067217
+      Data2: 1148380022
+      Data3: 140575116
+      Data4: -1873201623
+    Path: event:/button
   references:
     version: 2
     RefIds: []
@@ -991,8 +1033,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
-  m_sharedMaterial: {fileID: 5244409218692787892, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1218,6 +1260,20 @@ MonoBehaviour:
     m_LocalVariables: []
   objectText: {fileID: 779649095753045113}
   _button: {fileID: 4562397714751134224}
+  _hoverSound:
+    Guid:
+      Data1: -1301852247
+      Data2: 1289032338
+      Data3: 156113065
+      Data4: 497616006
+    Path: event:/hover
+  _clickSound:
+    Guid:
+      Data1: -1844067217
+      Data2: 1148380022
+      Data3: 140575116
+      Data4: -1873201623
+    Path: event:/button
   references:
     version: 2
     RefIds: []
@@ -1288,8 +1344,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
-  m_sharedMaterial: {fileID: 5244409218692787892, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1425,8 +1481,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
-  m_sharedMaterial: {fileID: 5244409218692787892, guid: 67e06a5caaef6a345af7edb8701cf56d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

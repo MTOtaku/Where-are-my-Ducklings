@@ -26,8 +26,14 @@ public class UIMenuManager : MonoBehaviour {
 
     [SerializeField] private List<GenericButton> backsButtons;
     [SerializeField] private int currentLanguageIndex;
-
-    private static string GAME_SCENE_NAME = "LD_2"; 
+     
+    [Header("Level Start")]        
+    [Tooltip("Nome do Level ou da Scene que vai iniciar ao apertar o Play")]
+    [SerializeField] private string GAME_SCENE_NAME = "LD_2";
+    
+    
+    private GameObject currentPanel;
+    
     void Start()
     {
         startButton.Initialize(OpenLevelSelectPanel);
@@ -47,26 +53,24 @@ public class UIMenuManager : MonoBehaviour {
 
     //Ativar somente o painel escolhido
     public void OpenPanel(GameObject selectedPanel){
-        foreach (GameObject panel in menuPanels) {
-            if (panel != null) {
-                panel.SetActive(panel == selectedPanel);
-            }
-        }
+        if (selectedPanel == null)
+            return;
+        selectedPanel.SetActive(true);
+        currentPanel = selectedPanel;
     }
     
     public void BackToTitleScreen(){
-        OpenPanel(titleScreenPanel);
+        if (currentPanel != null) {
+            currentPanel.SetActive(false);
+        }
+        currentPanel = null;
     }
     
     public void OpenLevelSelectPanel(){
-        GameEvents.UI.OnFadeAnimation.Invoke(false, () => FinishFadeAnimation());
-    }
-    
-    private void FinishFadeAnimation()
-    {
-        GameEvents.AudioSystem.StartGame.Invoke();
+        //OpenPanel(levelSelectPanel);
         Utils.LoadScene(GAME_SCENE_NAME);
     }
+ 
     public void OpenSettingsPanel(){
         OpenPanel(settingsPanel);
     }
