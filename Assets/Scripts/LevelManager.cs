@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private EventReference _winSound;
     private EventInstance winSoundInstance;
+    
+    [SerializeField] private string victory_scene;
     void Start()
     {
         GameEvents.GameSystem.OnStartLevel?.Invoke(levelLimits);
@@ -25,6 +27,7 @@ public class LevelManager : MonoBehaviour
         if(Utils.IsMusicPlaying(winSoundInstance))
             winSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         winSoundInstance = Utils.FmodSoundPlay(winSoundInstance, _winSound);
+        Utils.LoadScene(victory_scene);
     }
 
     private IEnumerator InitializeGame()

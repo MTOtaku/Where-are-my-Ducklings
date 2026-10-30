@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-English (en)
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Localization-String-Tables-English (en)
-  m_GUID: 9e22890664759ee4c955a959731f58fd
+  m_GUID: 9668c7d31c019d94fa8831f36849dcdb
   m_SerializeEntries:
   - m_GUID: 027718346c6ca694aa7fe53e0ee576bd
     m_Address: Languages_en
