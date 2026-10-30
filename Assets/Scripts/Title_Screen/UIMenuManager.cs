@@ -24,6 +24,7 @@ public class UIMenuManager : MonoBehaviour {
     [SerializeField] private GenericButton quitButton;
     [SerializeField] private GenericButton languageButton;
 
+    [SerializeField] private List<string> keyReferences;
     [SerializeField] private List<GenericButton> backsButtons;
     [SerializeField] private int currentLanguageIndex;
      
@@ -46,7 +47,7 @@ public class UIMenuManager : MonoBehaviour {
         {
             backButton.Initialize(BackToTitleScreen);
         }
-
+        BackgroundSoundManager.Instance.InicializarMusica();
         var myLocale = LocalizationSettings.AvailableLocales.GetLocale(LocalizationSettings.SelectedLocale.Identifier);
         currentLanguageIndex = LocalizationSettings.AvailableLocales.Locales.IndexOf(myLocale);
     }
@@ -67,7 +68,7 @@ public class UIMenuManager : MonoBehaviour {
     }
     
     public void OpenLevelSelectPanel(){
-        //OpenPanel(levelSelectPanel);
+        GameEvents.AudioSystem.StartGame.Invoke();
         Utils.LoadScene(GAME_SCENE_NAME);
     }
  
@@ -88,6 +89,7 @@ public class UIMenuManager : MonoBehaviour {
         currentLanguageIndex ++;
         if(currentLanguageIndex == LocalizationSettings.AvailableLocales.Locales.Count)
             currentLanguageIndex = 0;
+        languageButton.ChangeKeyReference(keyReferences[currentLanguageIndex]);
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
         GameEvents.Localization.OnChangeLocalization?.Invoke();
     }
