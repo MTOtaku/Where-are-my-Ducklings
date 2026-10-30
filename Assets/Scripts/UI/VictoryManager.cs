@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -9,15 +11,20 @@ public class VictoryManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI objectText;
 
     [SerializeField] private GenericButton mainMenuButton;
+    [SerializeField] private EventReference _winSound;
+    private EventInstance winSoundInstance;
+
     private const string MAIN_MENU_SCENE_NAME = "Title_Screen";
     void Start()
     {
         ShowTimeResult();
         mainMenuButton.Initialize(ReturnMainMenu);
+        winSoundInstance = Utils.FmodSoundPlay(winSoundInstance, _winSound);
     }
     
     private void ReturnMainMenu()
     {
+        winSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         Utils.LoadScene(MAIN_MENU_SCENE_NAME);
     }
     private void ShowTimeResult()

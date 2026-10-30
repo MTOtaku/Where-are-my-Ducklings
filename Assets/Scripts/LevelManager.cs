@@ -8,9 +8,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private BoxCollider2D levelLimits;
     [SerializeField] private EventReference _ambienceSound;
     private EventInstance ambienceSoundInstance;
-
-    [SerializeField] private EventReference _winSound;
-    private EventInstance winSoundInstance;
     
     [SerializeField] private string victory_scene;
     void Start()
@@ -23,10 +20,10 @@ public class LevelManager : MonoBehaviour
 
     private void LevelCompleted(float gameTime)
     {
+        GameManager.Instance.LevelCurrentTime = gameTime;
+        BackgroundSoundManager.Instance.InstanciaMusica.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
         ambienceSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        if(Utils.IsMusicPlaying(winSoundInstance))
-            winSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        winSoundInstance = Utils.FmodSoundPlay(winSoundInstance, _winSound);
         Utils.LoadScene(victory_scene);
     }
 

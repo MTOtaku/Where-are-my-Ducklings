@@ -2,15 +2,11 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-public class BackgroundSoundManager : MonoBehaviour
+public class BackgroundSoundManager : Singleton<BackgroundSoundManager>
 {
     [SerializeField] private EventReference _backgroundMusic;
     private EventInstance instanciaMusica;
-
-    void Start()
-    {
-        instanciaMusica = Utils.FmodSoundPlay(instanciaMusica, _backgroundMusic);
-    }
+    public EventInstance InstanciaMusica => instanciaMusica;
 
     void OnEnable()
     {
@@ -22,15 +18,10 @@ public class BackgroundSoundManager : MonoBehaviour
         GameEvents.AudioSystem.StartGame -= StartGame;
     }
 
-    bool IsMusicPlaying(EventInstance instance)
+    public void InicializarMusica()
     {
-        PLAYBACK_STATE state;
-        instance.getPlaybackState(out state);
-        
-        // Retorna verdadeiro se o estado não for STOPPED
-        return state != PLAYBACK_STATE.STOPPED;
+        instanciaMusica = Utils.FmodSoundPlay(instanciaMusica, _backgroundMusic);
     }
-
     private void StartGame()
     {
         ChangeParameter(instanciaMusica, "menugameplay", 100);

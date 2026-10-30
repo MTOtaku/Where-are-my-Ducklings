@@ -376,11 +376,15 @@ MonoBehaviour:
   creditsButton: {fileID: 1841936971}
   quitButton: {fileID: 1995834210}
   languageButton: {fileID: 897389410}
+  keyReferences:
+  - lng_english
+  - lng_portuguese
   backsButtons:
   - {fileID: 1964773889}
   - {fileID: 949322660}
   - {fileID: 748079075}
   currentLanguageIndex: 0
+  GAME_SCENE_NAME: LD_2
 --- !u!4 &723355056
 Transform:
   m_ObjectHideFlags: 0
