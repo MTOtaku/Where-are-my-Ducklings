@@ -58,6 +58,20 @@ MonoBehaviour:
   groundOffset: 0.3
   fallGravity: 20
   debugLogs: 1
+  _quackSound:
+    Guid:
+      Data1: -1132395765
+      Data2: 1276828985
+      Data3: 2039473041
+      Data4: -1514317968
+    Path: event:/quack_little
+  _foundDucklingSound:
+    Guid:
+      Data1: 1840634428
+      Data2: 1196871834
+      Data3: 793232556
+      Data4: 1934011028
+    Path: event:/newduck
 --- !u!114 &4229373732762923463
 MonoBehaviour:
   m_ObjectHideFlags: 0

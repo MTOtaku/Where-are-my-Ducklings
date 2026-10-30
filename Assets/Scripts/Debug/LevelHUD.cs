@@ -25,11 +25,11 @@ public class LevelHUD : MonoBehaviour {
     }
 
     void OnEnable() {
-        if (objective != null) objective.LevelCompleted += OnLevelCompleted;
+        if (objective != null) GameEvents.GameSystem.OnLevelCompleted += OnLevelCompleted;
     }
 
     void OnDisable() {
-        if (objective != null) objective.LevelCompleted -= OnLevelCompleted;
+        if (objective != null) GameEvents.GameSystem.OnLevelCompleted -= OnLevelCompleted;
     }
 
     void Update() {

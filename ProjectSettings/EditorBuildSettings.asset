@@ -8,15 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title_Screen.unity
     guid: 104f9e69dc7e7dd41845a18fb9bf7912
-  - enabled: 1
-    path: Assets/Scenes/Level_X.unity
-    guid: a3b4832a379717c48b3d321a2a978855
-  - enabled: 1
-    path: Assets/Scenes/TestsScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Title_Screen.unity
     guid: 104f9e69dc7e7dd41845a18fb9bf7912
+  - enabled: 1
+    path: Assets/Scenes/LD_2.unity
+    guid: 7ed1b58d9693eb14590e3d89c44b8dd7
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 691acc0dab2a94c4280c8cd16618a558, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
