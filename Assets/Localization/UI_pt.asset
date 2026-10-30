@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: pt
   m_SharedData: {fileID: 11400000, guid: a916afd3e4f9c7247b1d31b4d613f282, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 6562721707004002401
   m_TableData:
   - m_Id: 198490091520
     m_Localized: Voltar
@@ -38,6 +39,22 @@ MonoBehaviour:
     m_Localized: "Come\xE7ar"
     m_Metadata:
       m_Items: []
+  - m_Id: 4873777102876672
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4876754563788800
+    m_Localized: "Parab\xE9ns! Voc\xEA conseguiu terminar a fase com um tempo de
+      {levelMinuteTime}:{levelSecondsTime}."
+    m_Metadata:
+      m_Items:
+      - rid: 6562721707004002401
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6562721707004002401
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 4876754563788800
