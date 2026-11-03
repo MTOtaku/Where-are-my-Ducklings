@@ -575,7 +575,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -585,7 +585,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileSpriteIndex: 21
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -605,7 +605,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -833,18 +833,18 @@ Tilemap:
   - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: 5579e8cd0a8733a41b3896b927ca6e37, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 616764846, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -871108731, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 8
     m_Data: {fileID: 75397256, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1388885929, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -660378042, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -7050476, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
@@ -855,6 +855,30 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 7
     m_Data: {fileID: 2090945917, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -871108731, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -7050476, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 616764846, guid: 682e28158d1e93d45a09421307bbeeb7, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 22
     m_Data:
@@ -874,6 +898,60 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
+  - m_RefCount: 0
+    m_Data:
+      e00: 0
+      e01: 0
+      e02: 0
+      e03: -1.131224e-13
+      e10: 0
+      e11: 0
+      e12: 0
+      e13: 2.23e-43
+      e20: 0
+      e21: 0
+      e22: 1e-45
+      e23: -4.1507573e-25
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 4.591e-41
+  - m_RefCount: 0
+    m_Data:
+      e00: 0
+      e01: 0
+      e02: 0
+      e03: -1.131224e-13
+      e10: 0
+      e11: 0
+      e12: 0
+      e13: 2.23e-43
+      e20: 0
+      e21: 0
+      e22: 1e-45
+      e23: -4.1507573e-25
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 4.591e-41
+  - m_RefCount: 0
+    m_Data:
+      e00: 0
+      e01: 0
+      e02: 0
+      e03: -1.131224e-13
+      e10: 0
+      e11: 0
+      e12: 0
+      e13: 2.23e-43
+      e20: 0
+      e21: 0
+      e22: 1e-45
+      e23: -4.1507573e-25
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 4.591e-41
   m_TileColorArray:
   - m_RefCount: 22
     m_Data: {r: 1, g: 1, b: 1, a: 1}
@@ -13491,6 +13569,18 @@ PrefabInstance:
     - target: {fileID: 3228386722451755343, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463574029600327661, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: searchRadius
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463574029600327661, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: followSpacing
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463574029600327661, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: quackCooldown
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

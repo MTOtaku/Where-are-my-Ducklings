@@ -247,10 +247,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DuckQuack
   input: {fileID: 7303211261713389622}
-  searchRadius: 6
+  searchRadius: 5.5
   followRadius: 3
-  quackCooldown: 0.5
-  followSpacing: 1
+  quackCooldown: 1
+  followSpacing: 0.8
   trailStep: 0.1
   maxTrailPoints: 300
   debugLogs: 1
