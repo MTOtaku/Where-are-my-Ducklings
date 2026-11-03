@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class ObstacleBall : MonoBehaviour {
@@ -18,6 +20,9 @@ public class ObstacleBall : MonoBehaviour {
     private Rigidbody2D rb;
     private bool isRespawning;
 
+    [SerializeField] private EventReference _rockSound;
+    private EventInstance rockSoundInstance;
+    
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
     }
@@ -30,6 +35,8 @@ public class ObstacleBall : MonoBehaviour {
             );
 
             enabled = false;
+            rockSoundInstance = Utils.Fmod3DSoundPlay(rockSoundInstance, _rockSound, gameObject);
+
         }
     }
 
@@ -42,6 +49,7 @@ public class ObstacleBall : MonoBehaviour {
     private IEnumerator RespawnRoutine(){
         isRespawning = true;
         
+        rockSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         yield return new WaitForSeconds(respawnDelay);
 
         Respawn();
@@ -53,6 +61,7 @@ public class ObstacleBall : MonoBehaviour {
         rb.position = pointA.position;
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
+        rockSoundInstance = Utils.Fmod3DSoundPlay(rockSoundInstance, _rockSound, gameObject);
     }
 
     private void OnDrawGizmosSelected(){

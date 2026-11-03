@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 // O filhote. Três estados:
@@ -38,7 +40,11 @@ public class Duckling : MonoBehaviour {
     [SerializeField] float fallGravity = 20f;
 
     [SerializeField] bool debugLogs;
+    [SerializeField] private EventReference _quackSound;
+    [SerializeField] private EventReference _foundDucklingSound;
 
+    private EventInstance ducklingSoundInstance;
+    
     public DucklingState State { get; private set; } = DucklingState.Lost;
     // Já foi recuperado alguma vez? (muda o que acontece quando ele ouve o Quack)
     public bool IsRecovered { get; private set; }
@@ -68,6 +74,7 @@ public class Duckling : MonoBehaviour {
     // ---- Chamados pelo DuckQuack -----------------------------------------------------------
 
     public void StartFollowing(DuckQuack newMother) {
+        ducklingSoundInstance = Utils.Fmod3DSoundPlay(ducklingSoundInstance, _foundDucklingSound, gameObject);
         mother = newMother;
         IsRecovered = true;
         velocity = Vector2.zero;
@@ -90,7 +97,12 @@ public class Duckling : MonoBehaviour {
         SetState(DucklingState.Lost);
     }
 
-    public void Respond() => Responded?.Invoke();
+    public void Respond()
+    {
+        Debug.Log("Patinho respondendo");
+        ducklingSoundInstance = Utils.Fmod3DSoundPlay(ducklingSoundInstance, _quackSound, gameObject);
+        Responded?.Invoke();
+    }
 
     // ----------------------------------------------------------------------------------------
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Localization-Locales
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Localization-Locales
-  m_GUID: 4c2babce286cb8c468738c340ab1e16d
+  m_GUID: 29a9bc67b20c451429569cb9b41a8683
   m_SerializeEntries:
   - m_GUID: 53bbb1cc511d4c74fbda02d1aac31621
     m_Address: Portuguese (pt)

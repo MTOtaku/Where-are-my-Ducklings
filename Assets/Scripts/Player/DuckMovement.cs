@@ -81,7 +81,7 @@ public class DuckMovement : MonoBehaviour {
 
     public void NotifyLanded(float impactSpeed) => Landed?.Invoke(impactSpeed);
 
-    public void EnterWater(WaterZone zone){
+    public void EnterWater(WaterZone zone){            
         CurrentWater = zone;
         bool cooledDown = Time.time - lastWaterExitTime > movementSettings.waterReentryCooldown;
         if (Mode != MovementModeType.Water && cooledDown)

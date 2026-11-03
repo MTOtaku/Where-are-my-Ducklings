@@ -23,4 +23,9 @@ public class TextLocalize : MonoBehaviour
     {
         objectText.text = text.GetLocalizedString();
     }
+
+    public virtual void ChangeKeyReference(string newKey)
+    {
+        text.TableEntryReference = newKey;
+    }
 }

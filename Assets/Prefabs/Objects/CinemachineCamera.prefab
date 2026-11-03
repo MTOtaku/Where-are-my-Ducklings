@@ -59,8 +59,8 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 60
-    OrthographicSize: 10
+    FieldOfView: 5.5
+    OrthographicSize: 5.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0, y: 0}
+    ScreenPosition: {x: 0, y: 0.07}
     DeadZone:
       Enabled: 1
       Size: {x: 0.2, y: 0.2}
@@ -102,7 +102,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 8.02, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 0, z: 0}
   Damping: {x: 1, y: 1, z: 0}
   Lookahead:
     Enabled: 0

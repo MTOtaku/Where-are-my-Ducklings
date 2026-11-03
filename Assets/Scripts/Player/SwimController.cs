@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using FMOD.Studio;
+using FMODUnity;
+using UnityEngine;
 
 public class SwimController : MonoBehaviour, IMovementMode {
     enum Phase { Floating, Submerged }
@@ -22,8 +24,15 @@ public class SwimController : MonoBehaviour, IMovementMode {
         phase == Phase.Submerged ? DuckState.Diving : DuckState.Floating;
 
     WaterZone Water => duckMovement.CurrentWater;
+    [SerializeField] private EventReference _enterWaterSound;
+    [SerializeField] private EventReference _exitWaterSound;
+
+    private EventInstance duckSoundInstance;
 
     public void Enter(){
+        if(Utils.IsMusicPlaying(duckSoundInstance))
+            duckSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _enterWaterSound);
         phase = Phase.Floating;
         aiming = false;
         rigidBody.gravityScale = 0f;
@@ -33,6 +42,9 @@ public class SwimController : MonoBehaviour, IMovementMode {
     }
 
     public void Exit(){
+        if(Utils.IsMusicPlaying(duckSoundInstance))
+            duckSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _exitWaterSound);
         aiming = false;
         input.AimStarted -= OnAimStarted;
         input.AimReleased -= OnAimReleased;

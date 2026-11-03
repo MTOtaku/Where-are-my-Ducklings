@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour
+
+public class FadeManager : MonoBehaviour
 {
 
     [SerializeField] private float animationDuration;
@@ -27,6 +28,8 @@ public class UIManager : MonoBehaviour
 
     private void StartFadeAnimation(bool isFadeIn, Action fadeAnimationFinish)
     {
+        fadeImage.color = new Color(255, 255, 255, 1);
+        fadeImage.raycastTarget = true;
         StartCoroutine(FadeAnimation(isFadeIn, fadeAnimationFinish));
     }
 
@@ -46,5 +49,13 @@ public class UIManager : MonoBehaviour
             fadeMaterial.SetFloat(scaleName, scaleProgress);
             yield return null;
         }
+
+        if (isFadeIn)
+        {
+            fadeImage.color = new Color(255, 255, 255, 0);
+            fadeImage.raycastTarget = false;
+        }
+
+        fadeAnimationFinish?.Invoke();
     }
 }

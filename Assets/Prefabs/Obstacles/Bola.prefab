@@ -142,7 +142,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 113.097336
+  m_Mass: 8.63271
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -172,6 +172,13 @@ MonoBehaviour:
   pointA: {fileID: 6660995128444299926}
   pointB: {fileID: 1165802676531894482}
   respawnDelay: 2
+  _rockSound:
+    Guid:
+      Data1: -1759192646
+      Data2: 1250895342
+      Data3: 1449295288
+      Data4: -250270588
+    Path: event:/rock
 --- !u!1 &6490496543775908335
 GameObject:
   m_ObjectHideFlags: 0
