@@ -15,22 +15,22 @@ MonoBehaviour:
   m_TableCollectionName: Languages
   m_TableCollectionNameGuidString: dc7887dc4fbe7a64e9c3e72846cfac5d
   m_Entries:
-  - m_Id: 11151503360
+  - m_Id: 7825420288
     m_Key: lng_portuguese
     m_Metadata:
       m_Items: []
-  - m_Id: 91896049664
+  - m_Id: 73059430400
     m_Key: lng_english
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 6562721358319452376
+    rid: 1398784496211591323
   references:
     version: 2
     RefIds:
-    - rid: 6562721358319452376
+    - rid: 1398784496211591323
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1792004689770
+        m_CustomEpoch: 1793775254682

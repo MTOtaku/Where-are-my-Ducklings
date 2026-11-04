@@ -17,43 +17,68 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: a916afd3e4f9c7247b1d31b4d613f282, type: 2}
   m_Metadata:
     m_Items:
-    - rid: 6562721707004002400
+    - rid: 1398784496211591324
   m_TableData:
-  - m_Id: 34949984256
+  - m_Id: 8592977920
     m_Localized: Start
     m_Metadata:
       m_Items: []
-  - m_Id: 98393026560
+  - m_Id: 32697643008
     m_Localized: Options
     m_Metadata:
       m_Items: []
-  - m_Id: 120123715584
+  - m_Id: 67791384576
     m_Localized: Credits
     m_Metadata:
       m_Items: []
-  - m_Id: 138310217728
-    m_Localized: Quit
+  - m_Id: 107855376384
+    m_Localized: Exit
     m_Metadata:
       m_Items: []
-  - m_Id: 198490091520
-    m_Localized: Back
+  - m_Id: 238658940928
+    m_Localized: Back Menu
     m_Metadata:
       m_Items: []
-  - m_Id: 4873777102876672
-    m_Localized: Main Menu
+  - m_Id: 3343635083264
+    m_Localized: Movement
     m_Metadata:
       m_Items: []
-  - m_Id: 4876754563788800
-    m_Localized: Congratulations! You finish the level in {levelMinuteTime}:{levelSecondsTime}
+  - m_Id: 3404838367232
+    m_Localized: Quack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3797815291904
+    m_Localized: Fly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3841062760448
+    m_Localized: Movement Water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4104607657984
+    m_Localized: Reset Controll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4856851886080
+    m_Localized: Restart Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4927374913536
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8241491636224
+    m_Localized: Congratulation! You finish the level in {levelMinuteTime} minutes
+      and {levelSecondsTime} seconds.
     m_Metadata:
       m_Items:
-      - rid: 6562721707004002400
+      - rid: 1398784496211591324
   references:
     version: 2
     RefIds:
-    - rid: 6562721707004002400
+    - rid: 1398784496211591324
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Entries: 
         m_SharedEntries:
-        - id: 4876754563788800
+        - id: 8241491636224

@@ -377,8 +377,8 @@ MonoBehaviour:
   quitButton: {fileID: 1995834210}
   languageButton: {fileID: 897389410}
   keyReferences:
-  - lng_english
   - lng_portuguese
+  - lng_english
   backsButtons:
   - {fileID: 1964773889}
   - {fileID: 949322660}

@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3280463840182699452}
   - component: {fileID: 7411177470693335404}
   - component: {fileID: 2734045347708305829}
+  - component: {fileID: 3206979437641828835}
   m_Layer: 5
   m_Name: Movement_text
   m_TagString: Untagged
@@ -213,6 +214,31 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3206979437641828835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905727141252164010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c9d384cecdc4b4f8e89266fa2b1f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextLocalize
+  text:
+    m_TableReference:
+      m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
+    m_TableEntryReference:
+      m_KeyId: 3343635083264
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  objectText: {fileID: 2734045347708305829}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2358535264143315455
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +250,7 @@ GameObject:
   - component: {fileID: 1308933858854439493}
   - component: {fileID: 2474899302023694096}
   - component: {fileID: 3978090808354857474}
+  - component: {fileID: 465947893573425109}
   m_Layer: 5
   m_Name: Fly_text
   m_TagString: Untagged
@@ -350,6 +377,31 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &465947893573425109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2358535264143315455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c9d384cecdc4b4f8e89266fa2b1f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextLocalize
+  text:
+    m_TableReference:
+      m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
+    m_TableEntryReference:
+      m_KeyId: 3797815291904
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  objectText: {fileID: 3978090808354857474}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &3716453589018876546
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +501,7 @@ GameObject:
   - component: {fileID: 3672820053125942599}
   - component: {fileID: 4971597926263306138}
   - component: {fileID: 6423368503645333257}
+  - component: {fileID: 5993377957637692008}
   m_Layer: 5
   m_Name: Quack_text
   m_TagString: Untagged
@@ -575,6 +628,31 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5993377957637692008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764246132309416598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c9d384cecdc4b4f8e89266fa2b1f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextLocalize
+  text:
+    m_TableReference:
+      m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
+    m_TableEntryReference:
+      m_KeyId: 3404838367232
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  objectText: {fileID: 6423368503645333257}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &9004908252647045030
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +664,7 @@ GameObject:
   - component: {fileID: 1406336348558781460}
   - component: {fileID: 8667144507985216811}
   - component: {fileID: 6782931574660560840}
+  - component: {fileID: 5203851494547030576}
   m_Layer: 5
   m_Name: WaterText
   m_TagString: Untagged
@@ -712,6 +791,31 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5203851494547030576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004908252647045030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c9d384cecdc4b4f8e89266fa2b1f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextLocalize
+  text:
+    m_TableReference:
+      m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
+    m_TableEntryReference:
+      m_KeyId: 3841062760448
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  objectText: {fileID: 6782931574660560840}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &345694222972113972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1074,7 +1178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: text.m_TableEntryReference.m_KeyId
-      value: 91896049664
+      value: 73059430400
       objectReference: {fileID: 0}
     - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: text.m_TableReference.m_TableCollectionName
@@ -1201,6 +1305,14 @@ PrefabInstance:
     - target: {fileID: 2285840330353196575, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Name
       value: Reset_Bindings
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 4104607657984
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableReference.m_TableCollectionName
+      value: GUID:a916afd3e4f9c7247b1d31b4d613f282
       objectReference: {fileID: 0}
     - target: {fileID: 8038586817939752707, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Pivot.x
@@ -1836,7 +1948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: text.m_TableEntryReference.m_KeyId
-      value: 198490091520
+      value: 238658940928
       objectReference: {fileID: 0}
     - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: text.m_TableReference.m_TableCollectionName

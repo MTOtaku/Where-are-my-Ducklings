@@ -18,12 +18,12 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 11151503360
-    m_Localized: "Portuguese\t"
+  - m_Id: 7825420288
+    m_Localized: Portuguese
     m_Metadata:
       m_Items: []
-  - m_Id: 91896049664
-    m_Localized: Portuguese
+  - m_Id: 73059430400
+    m_Localized: English
     m_Metadata:
       m_Items: []
   references:

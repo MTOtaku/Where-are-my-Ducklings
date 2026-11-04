@@ -15,42 +15,66 @@ MonoBehaviour:
   m_TableCollectionName: UI
   m_TableCollectionNameGuidString: a916afd3e4f9c7247b1d31b4d613f282
   m_Entries:
-  - m_Id: 34949984256
+  - m_Id: 8592977920
     m_Key: ui_start
     m_Metadata:
       m_Items: []
-  - m_Id: 98393026560
-    m_Key: ui_option
+  - m_Id: 32697643008
+    m_Key: ui_options
     m_Metadata:
       m_Items: []
-  - m_Id: 120123715584
+  - m_Id: 67791384576
     m_Key: ui_credits
     m_Metadata:
       m_Items: []
-  - m_Id: 138310217728
-    m_Key: ui_quit
+  - m_Id: 107855376384
+    m_Key: ui_exit
     m_Metadata:
       m_Items: []
-  - m_Id: 198490091520
+  - m_Id: 238658940928
     m_Key: ui_back
     m_Metadata:
       m_Items: []
-  - m_Id: 4873777102876672
-    m_Key: ui_menu
+  - m_Id: 3343635083264
+    m_Key: ui_movement
     m_Metadata:
       m_Items: []
-  - m_Id: 4876754563788800
-    m_Key: ui_final_game
+  - m_Id: 3404838367232
+    m_Key: ui_quack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3797815291904
+    m_Key: ui_fly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3841062760448
+    m_Key: ui_water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4104607657984
+    m_Key: ui_reset_bindind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4856851886080
+    m_Key: ui_restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4927374913536
+    m_Key: ui_resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8241491636224
+    m_Key: ui_final_time
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 6562721403140571217
+    rid: 1398784496211591322
   references:
     version: 2
     RefIds:
-    - rid: 6562721403140571217
+    - rid: 1398784496211591322
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1792175879199
+        m_CustomEpoch: 1793775084087
