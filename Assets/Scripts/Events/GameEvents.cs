@@ -16,6 +16,7 @@ public static class GameEvents
         public static class UI
         {
             public static Action<bool, Action> OnFadeAnimation;
+            public static Action<int, int> OnUpdateDucklings;
         }
 
         public static class AudioSystem
