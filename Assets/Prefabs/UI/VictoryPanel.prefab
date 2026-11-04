@@ -267,7 +267,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
     m_TableEntryReference:
-      m_KeyId: 4876754563788800
+      m_KeyId: 8241491636224
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: text.m_TableEntryReference.m_KeyId
-      value: 4873777102876672
+      value: 238658940928
       objectReference: {fileID: 0}
     - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: text.m_TableReference.m_TableCollectionName
