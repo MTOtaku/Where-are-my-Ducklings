@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
         ambienceSoundInstance = Utils.Fmod3DSoundPlay(ambienceSoundInstance, _ambienceSound, gameObject);
         StartCoroutine(InitializeGame());
         GameEvents.GameSystem.OnLevelCompleted += LevelCompleted;
+        GameEvents.QuitMenu.OnQuit += QuitToMenu;
     }
 
     private void LevelCompleted(float gameTime)
@@ -31,5 +32,12 @@ public class LevelManager : MonoBehaviour
     {
         yield return null;
         GameEvents.UI.OnFadeAnimation.Invoke(true, () => Debug.Log(""));
+    }
+    private void QuitToMenu()
+    {
+        if (BackgroundSoundManager.Instance != null)
+            BackgroundSoundManager.Instance.InstanciaMusica.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
+        ambienceSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

@@ -10,6 +10,11 @@ public class DuckInput : MonoBehaviour {
     InputActionAsset asset;
     private InputAction leanLeft, leanRight, pointerDelta, pointerPosition, aim, quack, flapLeft, flapRight;
     private Vector2 pointerDeltaAccum;
+
+    // Pause: enquanto bloqueado, nenhum evento de jogo é disparado
+    private bool blocked;
+    private bool aimHeld;                    // a mira foi iniciada e ainda não foi solta
+    private bool releasedWhileBlocked;       // a mira foi solta durante o pause: dispara a soltura ao voltar
     
     public event Action<int> LeanTapped; // -1 pra esquerda, +1 pra direita
     public event Action AimStarted;
@@ -57,6 +62,10 @@ public class DuckInput : MonoBehaviour {
     }
 
     void OnEnable(){
+        // Pause: bloqueia e libera os controles junto com o PauseManager
+        PauseManager.PauseChanged += SetBlocked;
+        SetBlocked(PauseManager.IsPaused);
+
         if (leanLeft == null) return;
         leanLeft.performed += OnLeanLeft;
         leanRight.performed += OnLeanRight;
@@ -68,6 +77,8 @@ public class DuckInput : MonoBehaviour {
     }
     
     void OnDisable(){
+        PauseManager.PauseChanged -= SetBlocked;
+
         if (leanLeft == null) return;
         leanLeft.performed  -= OnLeanLeft;
         leanRight.performed -= OnLeanRight;
@@ -79,15 +90,46 @@ public class DuckInput : MonoBehaviour {
         if (flapRight != null) flapRight.performed -= OnFlapRight;
     }
     
-    void Update() => pointerDeltaAccum += pointerDelta.ReadValue<Vector2>();
+    void Update(){
+        if (blocked) return;
+        pointerDeltaAccum += pointerDelta.ReadValue<Vector2>();
+    }
 
-    void OnLeanLeft(InputAction.CallbackContext _) => LeanTapped?.Invoke(-1);
-    void OnLeanRight(InputAction.CallbackContext _) => LeanTapped?.Invoke(1);
-    void OnAimStarted(InputAction.CallbackContext _) => AimStarted?.Invoke();
-    void OnAimReleased(InputAction.CallbackContext _) => AimReleased?.Invoke();
-    void OnQuack(InputAction.CallbackContext _) => QuackPressed?.Invoke();
-    void OnFlapLeft(InputAction.CallbackContext _) => FlapLeftPressed?.Invoke();
-    void OnFlapRight(InputAction.CallbackContext _) => FlapRightPressed?.Invoke();
+    void SetBlocked(bool value){
+        if (blocked == value) return;
+        blocked = value;
+
+        // O movimento do mouse durante o pause não pode virar um "tranco" ao voltar
+        ClearPointerDelta();
+
+        if (!blocked && releasedWhileBlocked) {
+            releasedWhileBlocked = false;
+            aimHeld = false;
+            AimReleased?.Invoke();
+        }
+    }
+
+    void OnLeanLeft(InputAction.CallbackContext _){ if (!blocked) LeanTapped?.Invoke(-1); }
+    void OnLeanRight(InputAction.CallbackContext _){ if (!blocked) LeanTapped?.Invoke(1); }
+
+    void OnAimStarted(InputAction.CallbackContext _){
+        if (blocked) return;
+        aimHeld = true;
+        AimStarted?.Invoke();
+    }
+
+    void OnAimReleased(InputAction.CallbackContext _){
+        if (blocked) {
+            if (aimHeld) releasedWhileBlocked = true;
+            return;
+        }
+        aimHeld = false;
+        AimReleased?.Invoke();
+    }
+
+    void OnQuack(InputAction.CallbackContext _){ if (!blocked) QuackPressed?.Invoke(); }
+    void OnFlapLeft(InputAction.CallbackContext _){ if (!blocked) FlapLeftPressed?.Invoke(); }
+    void OnFlapRight(InputAction.CallbackContext _){ if (!blocked) FlapRightPressed?.Invoke(); }
 
     // Função de Rebind para quando precisar
 

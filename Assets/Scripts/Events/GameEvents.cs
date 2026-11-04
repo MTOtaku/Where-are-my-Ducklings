@@ -22,4 +22,8 @@ public static class GameEvents
         {
             public static Action StartGame;
         }
+
+        public static class QuitMenu {
+            public static Action OnQuit;
+        }
     }
