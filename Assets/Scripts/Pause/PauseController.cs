@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using FMOD.Studio;
+using FMODUnity;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -29,11 +31,15 @@ public class PauseController : MonoBehaviour {
 
     InputAction pauseAction;
 
+    [SerializeField] EventReference pauseSnapshot;
+    EventInstance pauseInstance;
     void Awake() {
         // Ação própria (não depende do mapa 'Player', que fica bloqueado durante o pause)
         pauseAction = new InputAction("Pause", InputActionType.Button);
         pauseAction.AddBinding("<Keyboard>/escape");
         pauseAction.AddBinding("<Gamepad>/start");
+        pauseInstance = RuntimeManager.CreateInstance(pauseSnapshot);
+
 
         if (pausePanel != null) pausePanel.SetActive(false);
     }
@@ -60,8 +66,10 @@ public class PauseController : MonoBehaviour {
         if (PauseManager.IsPaused) PauseManager.Resume();
     }
 
-    void OnDestroy() => pauseAction?.Dispose();
-
+    void OnDestroy(){
+        pauseInstance.release();
+        pauseAction?.Dispose();
+    }
     void OnApplicationFocus(bool hasFocus) {
         if (!hasFocus && pauseWhenFocusLost && CanPause()) PauseManager.Pause();
     }
@@ -79,6 +87,15 @@ public class PauseController : MonoBehaviour {
 
     void OnPauseChanged(bool paused) {
         if (pausePanel != null) pausePanel.SetActive(paused);
+
+        if (paused)
+        {
+            pauseInstance.start(); 
+        }
+        else
+        {
+            pauseInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
 
         if (paused && firstSelected != null && EventSystem.current != null)
             EventSystem.current.SetSelectedGameObject(firstSelected);

@@ -11652,6 +11652,13 @@ MonoBehaviour:
   down: 0
   left: 1
   right: 0
+  _windSound:
+    Guid:
+      Data1: -1547152796
+      Data2: 1081718767
+      Data3: 747506561
+      Data4: -1258153896
+    Path: event:/air
   prevUp: 0
   prevDown: 0
   prevLeft: 1
@@ -13327,6 +13334,13 @@ MonoBehaviour:
   down: 0
   left: 0
   right: 0
+  _windSound:
+    Guid:
+      Data1: -1547152796
+      Data2: 1081718767
+      Data3: 747506561
+      Data4: -1258153896
+    Path: event:/air
   prevUp: 0
   prevDown: 0
   prevLeft: 0
@@ -30860,6 +30874,13 @@ MonoBehaviour:
   down: 0
   left: 0
   right: 1
+  _windSound:
+    Guid:
+      Data1: -1547152796
+      Data2: 1081718767
+      Data3: 747506561
+      Data4: -1258153896
+    Path: event:/air
   prevUp: 1
   prevDown: 0
   prevLeft: 0
@@ -85604,6 +85625,13 @@ MonoBehaviour:
   quitButton: {fileID: 1886128895}
   pauseWhenFocusLost: 1
   menuSceneName: Title_Screen
+  pauseSnapshot:
+    Guid:
+      Data1: -850037403
+      Data2: 1154352662
+      Data3: -293863003
+      Data4: 1873034535
+    Path: snapshot:/pause
 --- !u!1 &2094794520
 GameObject:
   m_ObjectHideFlags: 0
@@ -85678,6 +85706,13 @@ MonoBehaviour:
   down: 0
   left: 0
   right: 1
+  _windSound:
+    Guid:
+      Data1: -1547152796
+      Data2: 1081718767
+      Data3: 747506561
+      Data4: -1258153896
+    Path: event:/air
   prevUp: 0
   prevDown: 0
   prevLeft: 0
@@ -86009,6 +86044,26 @@ PrefabInstance:
     - target: {fileID: 676943350191949697, guid: 3c785b22b88800f47839f18eaaed03d2, type: 3}
       propertyPath: prevLeft
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676943350191949697, guid: 3c785b22b88800f47839f18eaaed03d2, type: 3}
+      propertyPath: _windSound.Path
+      value: event:/air
+      objectReference: {fileID: 0}
+    - target: {fileID: 676943350191949697, guid: 3c785b22b88800f47839f18eaaed03d2, type: 3}
+      propertyPath: _windSound.Guid.Data1
+      value: -1547152796
+      objectReference: {fileID: 0}
+    - target: {fileID: 676943350191949697, guid: 3c785b22b88800f47839f18eaaed03d2, type: 3}
+      propertyPath: _windSound.Guid.Data2
+      value: 1081718767
+      objectReference: {fileID: 0}
+    - target: {fileID: 676943350191949697, guid: 3c785b22b88800f47839f18eaaed03d2, type: 3}
+      propertyPath: _windSound.Guid.Data3
+      value: 747506561
+      objectReference: {fileID: 0}
+    - target: {fileID: 676943350191949697, guid: 3c785b22b88800f47839f18eaaed03d2, type: 3}
+      propertyPath: _windSound.Guid.Data4
+      value: -1258153896
       objectReference: {fileID: 0}
     - target: {fileID: 2289640726235089691, guid: 3c785b22b88800f47839f18eaaed03d2, type: 3}
       propertyPath: m_Name
