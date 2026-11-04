@@ -47,7 +47,7 @@ public class DuckQuack : MonoBehaviour {
     readonly List<Vector2> trail = new List<Vector2>();         // caminho da mamãe, [último] = o mais novo
     DuckFacing facing;
     float lastQuackTime = -Mathf.Infinity;
-
+    int maxDucklingsLevel = 5;
     void Awake() {
         facing = GetComponent<DuckFacing>();
         if (input == null) input = GetComponent<DuckInput>();
@@ -85,8 +85,9 @@ public class DuckQuack : MonoBehaviour {
         lastQuackTime = Time.time;
 
         Quacked?.Invoke();
-        if(!Utils.IsMusicPlaying(duckSoundInstance))
-            duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _quackSound);
+        if(Utils.IsMusicPlaying(duckSoundInstance))
+            duckSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _quackSound);
         Vector2 origin = transform.position;
 
         for (int i = Duckling.All.Count - 1; i >= 0; i--) {
@@ -121,6 +122,7 @@ public class DuckQuack : MonoBehaviour {
     public void AddFollower(Duckling d) {
         if (followers.Contains(d)) return;
         followers.Add(d);
+        GameEvents.UI.OnUpdateDucklings?.Invoke(followers.Count, maxDucklingsLevel);
         if (debugLogs) Debug.Log($"{d.name} passou a seguir a mamãe ({followers.Count} na fila)", d);
         DucklingJoined?.Invoke(d);
     }
@@ -128,6 +130,7 @@ public class DuckQuack : MonoBehaviour {
     public void RemoveFollower(Duckling d) {
         if (!followers.Remove(d)) return;
         if (debugLogs) Debug.Log($"{d.name} se perdeu da mamãe ({followers.Count} na fila)", d);
+        GameEvents.UI.OnUpdateDucklings?.Invoke(followers.Count, maxDucklingsLevel);
         DucklingLeft?.Invoke(d);
     }
 

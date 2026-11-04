@@ -49,17 +49,14 @@ public class FlightController : MonoBehaviour, IMovementMode {
     private bool frameRightPressed = false;
 
     [SerializeField] private EventReference _flightSound;
-    [SerializeField] private EventReference _windSound;
 
     private EventInstance flightSoundInstance;
-    private EventInstance windSoundInstance;
 
     public void Enter(){
         airTime = 0f;
         outsideWindTime = 0f;
         WingState = Wings.Neutral;
         glideTimer = 0f;
-        windSoundInstance = Utils.FmodSoundPlay(windSoundInstance, _windSound);
         // O voo começa apontando na direção do vento da área em que o pato decolou
         // (0° = cima, +90° = esquerda, -90° = direita, 180° = baixo)
         referenceAngle = duckMovement.InWind ? duckMovement.WindAngle : 0f;
@@ -79,7 +76,6 @@ public class FlightController : MonoBehaviour, IMovementMode {
     }
 
     public void Exit(){
-        windSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         if (input != null) {
             input.FlapLeftPressed -= HandleFlapLeftInput;
             input.FlapRightPressed -= HandleFlapRightInput;
