@@ -92202,6 +92202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterZone
   enterHeightMargin: 1
+  waterSplashPrefab: {fileID: 0}
+  waterSplashOutPrefab: {fileID: 0}
 --- !u!61 &2011850569
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -93389,6 +93391,10 @@ PrefabInstance:
     - target: {fileID: 737039605944893510, guid: 2d935be76ea7bde4cb4b66b210ec25a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155837244713767404, guid: 2d935be76ea7bde4cb4b66b210ec25a4, type: 3}
+      propertyPath: waterSplashOutPrefab
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4845493050333125800, guid: 2d935be76ea7bde4cb4b66b210ec25a4, type: 3}
       propertyPath: m_Name
