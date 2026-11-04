@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -139,6 +139,7 @@ public static class InputBindings {
         if (asset == null) return;
         asset.RemoveAllBindingOverrides();
         PlayerPrefs.DeleteKey(PlayerPrefsKey);
+        PlayerPrefs.Save();   
         BindingsChanged?.Invoke();
     }
 }
