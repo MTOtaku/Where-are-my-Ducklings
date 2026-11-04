@@ -128,40 +128,4 @@ public class DuckInput : MonoBehaviour {
     void OnQuack(InputAction.CallbackContext _){ if (!blocked) QuackPressed?.Invoke(); }
     void OnFlapLeft(InputAction.CallbackContext _){ if (!blocked) FlapLeftPressed?.Invoke(); }
     void OnFlapRight(InputAction.CallbackContext _){ if (!blocked) FlapRightPressed?.Invoke(); }
-
-    // Função de Rebind para quando precisar
-
-    public void StartRebind(InputAction action, int bindingIndex, Action onDone = null){
-        action.Disable();
-
-        action.PerformInteractiveRebinding(bindingIndex)
-            .WithControlsExcluding("Mouse")
-            .OnComplete(op => {
-                op.Dispose();
-                action.Enable();
-                SaveBindings();
-                onDone?.Invoke();
-            })
-            .OnCancel(op => {
-                op.Dispose();
-                action.Enable();
-            }).Start();
-    }
-    
-    public void SaveBindings() {
-        PlayerPrefs.SetString(BindingsKeys, asset.SaveBindingOverridesAsJson());
-        PlayerPrefs.Save();
-    }
-
-    public void ResetBindings() {
-        asset.RemoveAllBindingOverrides();
-        PlayerPrefs.DeleteKey(BindingsKeys);
-    }
-    void OnLeanLeft(InputAction.CallbackContext _) => LeanTapped?.Invoke(-1);
-    void OnLeanRight(InputAction.CallbackContext _) => LeanTapped?.Invoke(1);
-    void OnAimStarted(InputAction.CallbackContext _) => AimStarted?.Invoke();
-    void OnAimReleased(InputAction.CallbackContext _) => AimReleased?.Invoke();
-    void OnQuack(InputAction.CallbackContext _) => QuackPressed?.Invoke();
-    void OnFlapLeft(InputAction.CallbackContext _) => FlapLeftPressed?.Invoke();
-    void OnFlapRight(InputAction.CallbackContext _) => FlapRightPressed?.Invoke();
 }
