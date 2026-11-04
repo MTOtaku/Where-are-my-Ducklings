@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class DuckInput : MonoBehaviour {
-    private const string BindingsKeys = "duck_bindings";
-
+    
     [SerializeField] private string actionMapName = "Player";
     
     InputActionAsset asset;
@@ -45,8 +44,7 @@ public class DuckInput : MonoBehaviour {
             return;
         }
         
-        string json = PlayerPrefs.GetString(BindingsKeys, "");
-        if (!string.IsNullOrEmpty(json)) asset.LoadBindingOverridesFromJson(json);
+        InputBindings.EnsureLoaded();
         
         var map = asset.FindActionMap(actionMapName, true);
         leanLeft = map.FindAction("LeanLeft", true);    
@@ -159,4 +157,11 @@ public class DuckInput : MonoBehaviour {
         asset.RemoveAllBindingOverrides();
         PlayerPrefs.DeleteKey(BindingsKeys);
     }
+    void OnLeanLeft(InputAction.CallbackContext _) => LeanTapped?.Invoke(-1);
+    void OnLeanRight(InputAction.CallbackContext _) => LeanTapped?.Invoke(1);
+    void OnAimStarted(InputAction.CallbackContext _) => AimStarted?.Invoke();
+    void OnAimReleased(InputAction.CallbackContext _) => AimReleased?.Invoke();
+    void OnQuack(InputAction.CallbackContext _) => QuackPressed?.Invoke();
+    void OnFlapLeft(InputAction.CallbackContext _) => FlapLeftPressed?.Invoke();
+    void OnFlapRight(InputAction.CallbackContext _) => FlapRightPressed?.Invoke();
 }
