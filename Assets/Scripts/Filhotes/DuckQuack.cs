@@ -85,8 +85,9 @@ public class DuckQuack : MonoBehaviour {
         lastQuackTime = Time.time;
 
         Quacked?.Invoke();
-        if(!Utils.IsMusicPlaying(duckSoundInstance))
-            duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _quackSound);
+        if(Utils.IsMusicPlaying(duckSoundInstance))
+            duckSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _quackSound);
         Vector2 origin = transform.position;
 
         for (int i = Duckling.All.Count - 1; i >= 0; i--) {
