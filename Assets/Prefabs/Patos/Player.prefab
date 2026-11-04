@@ -183,13 +183,6 @@ MonoBehaviour:
       Data3: 2068788378
       Data4: -677735692
     Path: event:/wing
-  _windSound:
-    Guid:
-      Data1: -1547152796
-      Data2: 1081718767
-      Data3: 747506561
-      Data4: -1258153896
-    Path: event:/air
 --- !u!114 &8121621628709987556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +253,13 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  _windSound:
+    Guid:
+      Data1: -1547152796
+      Data2: 1081718767
+      Data3: 747506561
+      Data4: -1258153896
+    Path: event:/air
 --- !u!114 &1528827137370468559
 MonoBehaviour:
   m_ObjectHideFlags: 0

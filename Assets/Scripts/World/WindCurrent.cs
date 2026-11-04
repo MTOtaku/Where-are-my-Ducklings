@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -11,6 +13,8 @@ public class WindCurrent : MonoBehaviour {
     [SerializeField] bool left;
     [Tooltip("O vento empurra o pato para a direita. Não pode ser marcado junto com Esquerda.")]
     [SerializeField] bool right;
+    [SerializeField] private EventReference _windSound;
+    private EventInstance windSoundInstance;
 
     // Valores anteriores (escondidos): servem para descobrir QUAL check acabou de ser marcado e desmarcar só ele
     [SerializeField, HideInInspector] bool prevUp = true, prevDown, prevLeft, prevRight;
@@ -36,7 +40,18 @@ public class WindCurrent : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D c){
         if (c.attachedRigidbody != null && c.attachedRigidbody.TryGetComponent(out DuckMovement d))
+        {
+            if (!Utils.IsMusicPlaying(windSoundInstance))
+            {
+                windSoundInstance = Utils.FmodSoundPlay(windSoundInstance, _windSound);
+            }
             d.NotifyWind(this);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D c)
+    {
+        windSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     // Roda no editor sempre que um valor do Inspector muda: impede lados opostos ao mesmo tempo
