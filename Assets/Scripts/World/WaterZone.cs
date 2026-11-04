@@ -7,8 +7,11 @@ public class WaterZone : MonoBehaviour
     [SerializeField] float enterHeightMargin = 1f;
 
     [Header("Efeitos Visuais")]
-    [Tooltip("Arraste o Prefab do seu Splash de Água (VFX_WaterSplash) aqui")]
+    [Tooltip("Arraste o Prefab do Splash de Entrada (água subindo) aqui")]
     [SerializeField] GameObject waterSplashPrefab;
+
+    [Tooltip("Arraste o Prefab do Splash de Saída (água respingando ao pular) aqui")]
+    [SerializeField] GameObject waterSplashOutPrefab;
 
     Collider2D col;
 
@@ -24,7 +27,7 @@ public class WaterZone : MonoBehaviour
                                   && point.y >= b.min.y && point.y <= b.max.y + enterHeightMargin;
     }
 
-    // Gerencia a troca de controles (Física)
+    // Gerencia a troca de controles contínua
     void OnTriggerStay2D(Collider2D c)
     {
         if (c.attachedRigidbody == null || !c.attachedRigidbody.TryGetComponent(out DuckMovement d)) return;
@@ -34,26 +37,40 @@ public class WaterZone : MonoBehaviour
             d.EnterWater(this);
     }
 
-    //Gerencia apenas o impacto visual (Partícula)
+    // Gerencia a partícula de ENTRADA (Caindo)
     void OnTriggerEnter2D(Collider2D c)
     {
-        // Verifica se quem entrou foi o pato
         if (c.attachedRigidbody == null || !c.attachedRigidbody.TryGetComponent(out DuckMovement d)) return;
 
-        // Confirma se o pato está realmente caindo (velocidade Y negativa) e não apenas andando para dentro da água
+        // Confirma se está caindo
         if (d.Body.linearVelocity.y < -0.1f)
         {
-
-            // O X é o do pato, mas o Y é travado na linha da superfície da água
             Vector3 splashPosition = new Vector3(d.transform.position.x, SurfaceY, d.transform.position.z);
 
             if (waterSplashPrefab != null)
             {
-                // Instancia a partícula exatamente na linha da água
                 GameObject splash = Instantiate(waterSplashPrefab, splashPosition, Quaternion.identity);
-
-                // Destrói o objeto após 1.5 segundos para limpar a memória
                 Destroy(splash, 1.5f);
+            }
+        }
+    }
+
+    //  Gerencia a partícula de SAÍDA (Pulando para fora)
+    void OnTriggerExit2D(Collider2D c)
+    {
+        if (c.attachedRigidbody == null || !c.attachedRigidbody.TryGetComponent(out DuckMovement d)) return;
+
+        // Confirma se o pato está subindo (velocidade Y positiva) ao sair do colisor
+        if (d.Body.linearVelocity.y > 0.1f)
+        {
+
+            // Nasce na exata superfície do lago, ignorando a altura que o pato já alcançou no pulo
+            Vector3 splashPosition = new Vector3(d.transform.position.x, SurfaceY, d.transform.position.z);
+
+            if (waterSplashOutPrefab != null)
+            {
+                GameObject splashOut = Instantiate(waterSplashOutPrefab, splashPosition, Quaternion.identity);
+                Destroy(splashOut, 1.5f);
             }
         }
     }
