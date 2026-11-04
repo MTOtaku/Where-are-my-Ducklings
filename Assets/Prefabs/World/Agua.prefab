@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterZone
   enterHeightMargin: 1
+  waterSplashPrefab: {fileID: 3515641631589945207, guid: e55e4951c67378d48ab517873ef1e923, type: 3}
