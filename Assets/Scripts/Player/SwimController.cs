@@ -29,6 +29,11 @@ public class SwimController : MonoBehaviour, IMovementMode {
 
     private EventInstance duckSoundInstance;
 
+    void OnDisable()
+    {
+        if(Utils.IsMusicPlaying(duckSoundInstance))
+            duckSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
     public void Enter(){
         if(Utils.IsMusicPlaying(duckSoundInstance))
             duckSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
