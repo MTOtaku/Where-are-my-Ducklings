@@ -291,6 +291,7 @@ MonoBehaviour:
   input: {fileID: 7303211261713389622}
   searchRadius: 6
   followRadius: 3
+  iconRadius: 20
   quackCooldown: 0.5
   followSpacing: 1
   trailStep: 0.1
@@ -587,7 +588,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7178273735571213697, guid: 248987a17a4168b48b8feb4911fe47c8, type: 3}
+  m_Sprite: {fileID: 5193040700838188507, guid: f85a635bd6cf16f4e8314b39393f6bf0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
