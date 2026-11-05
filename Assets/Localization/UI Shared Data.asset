@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: UI
+  m_TableCollectionNameGuidString: a916afd3e4f9c7247b1d31b4d613f282
+  m_Entries:
+  - m_Id: 8592977920
+    m_Key: ui_start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32697643008
+    m_Key: ui_options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67791384576
+    m_Key: ui_credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 107855376384
+    m_Key: ui_exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238658940928
+    m_Key: ui_back_menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3343635083264
+    m_Key: ui_movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3404838367232
+    m_Key: ui_quack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3797815291904
+    m_Key: ui_fly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3841062760448
+    m_Key: ui_water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4104607657984
+    m_Key: ui_reset_bindind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4856851886080
+    m_Key: ui_restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4927374913536
+    m_Key: ui_resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8241491636224
+    m_Key: ui_final_time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345235044331520
+    m_Key: ui_bindings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345519007100928
+    m_Key: ui_master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345562569142272
+    m_Key: ui_music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345582735355904
+    m_Key: ui_sfx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 346495508180992
+    m_Key: ui_back
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1398784496211591322
+  references:
+    version: 2
+    RefIds:
+    - rid: 1398784496211591322
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1793775084087

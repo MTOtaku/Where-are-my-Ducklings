@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bfd6f4a04596864dac983cddb45d636, type: 3}
+  m_Name: DuckMovementSettings
+  m_EditorClassIdentifier: Assembly-CSharp::MovementSettings
+  coyoteTime: 0.15
+  getUpDuration: 0.4
+  ballisticGravity: 3
+  ballisticMinAirTime: 0.1
+  waterReentryCooldown: 0.2
+  tapStep: 28
+  heatPenalty: 0
+  heatDecay: 0
+  instability: 350
+  angularDamping: 0.8
+  maxLeanAngle: 70
+  speedPerDegree: 0.2
+  walkAccel: 20
+  friction: 12
+  maxWalkSpeed: 6
+  fallenDuration: 2
+  groundGravity: 3
+  neutralGravity: 1.2
+  glideGravity: 1
+  glideForwardSpeed: 4
+  airAccel: 8
+  maxAirSpeed: 15
+  windLift: 20
+  maxFlightTimeOutsideWind: 0.8
+  minAirTime: 0.4
+  minForce: 4
+  maxForce: 11.3
+  maxDragScreenFraction: 0.25
+  minDragPixels: 12
+  buoyancyPerForce: 1.2
+  underwaterDrag: 0.8
+  exitMultiplier: 1.8
+  surfaceSpring: 3
+  surfaceDrag: 0
