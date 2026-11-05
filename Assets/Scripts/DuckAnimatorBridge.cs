@@ -8,6 +8,8 @@ public class DuckAnimatorBridge : MonoBehaviour {
     [SerializeField] GroundBalanceController ground;
     [Tooltip("O FlightController do Player: avisa a cada batida de asa para tocar a animação. Se ficar vazio, procura no Player.")]
     [SerializeField] FlightController flight;
+    [Tooltip("O DuckQuack do Player: avisa a cada Quack para tocar a animação da boca. Se ficar vazio, procura no Player.")]
+    [SerializeField] DuckQuack quack;
     [SerializeField] MovementSettings movementSettings;
 
     [Header("Ciclo de andar")]
@@ -25,12 +27,14 @@ public class DuckAnimatorBridge : MonoBehaviour {
     static readonly int WalkSpeedId = Animator.StringToHash("WalkSpeed");
     static readonly int FlapLeftId = Animator.StringToHash("FlapLeft");
     static readonly int FlapRightId = Animator.StringToHash("FlapRight");
+    static readonly int QuackId = Animator.StringToHash("Quack");
 
     // Só os parâmetros que EXISTEM no Controller (com o nome e o tipo certos) são enviados
     readonly HashSet<int> available = new HashSet<int>();
 
     void Awake() {
         if (flight == null && duck != null) flight = duck.GetComponent<FlightController>();
+        if (quack == null && duck != null) quack = duck.GetComponent<DuckQuack>();
 
         if (animator == null || animator.runtimeAnimatorController == null) {
             Debug.LogWarning("DuckAnimatorBridge: o Animator está vazio ou sem Controller. Nada será enviado.", this);
@@ -49,6 +53,7 @@ public class DuckAnimatorBridge : MonoBehaviour {
         Register(parameters, "WalkSpeed", AnimatorControllerParameterType.Float, missing);
         Register(parameters, "FlapLeft", AnimatorControllerParameterType.Trigger, missing);
         Register(parameters, "FlapRight", AnimatorControllerParameterType.Trigger, missing);
+        Register(parameters, "Quack", AnimatorControllerParameterType.Trigger, missing);
 
         if (missing.Count > 0)
             Debug.LogWarning("DuckAnimatorBridge: faltam estes parâmetros no Animator Controller (confira nome e tipo): "
@@ -68,17 +73,22 @@ public class DuckAnimatorBridge : MonoBehaviour {
     void OnEnable() {
         duck.StateChanged += OnStateChanged;
         if (flight != null) flight.Flapped += OnFlapped;
+        if (quack != null) quack.Quacked += OnQuacked;
     }
 
     void OnDisable() {
         duck.StateChanged -= OnStateChanged;
         if (flight != null) flight.Flapped -= OnFlapped;
+        if (quack != null) quack.Quacked -= OnQuacked;
     }
 
     void OnStateChanged(DuckState from, DuckState to) => SetInt(StateId, (int)to);
 
     // Q = asa esquerda, E = asa direita
     void OnFlapped(bool leftWing) => SetTrigger(leftWing ? FlapLeftId : FlapRightId);
+
+    // Cada Quack (já respeitando o cooldown do DuckQuack) abre e fecha o bico
+    void OnQuacked() => SetTrigger(QuackId);
 
     void Update(){
         var v = duck.Body.linearVelocity;

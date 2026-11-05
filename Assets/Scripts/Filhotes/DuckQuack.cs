@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
@@ -14,6 +15,8 @@ public class DuckQuack : MonoBehaviour {
     [SerializeField] float searchRadius = 10f;
     [Tooltip("Area Follow: raio (m) em que o filhote passa a seguir a mamãe ao ouvir o Quack. Deve ser MENOR que a Search.")]
     [SerializeField] float followRadius = 4f;
+    [Tooltip("Area Icon: raio (m) em que o indicador de posicao aparece no Canvas para filhotes fora do Search. Nao interfere com Follow nem Search.")]
+    [SerializeField] float iconRadius = 20f;
 
     [Header("Quack")]
     [Tooltip("Tempo mínimo (segundos) entre dois Quacks. Evita spam do botão.")]
@@ -27,8 +30,11 @@ public class DuckQuack : MonoBehaviour {
     [Tooltip("Quantidade máxima de pontos do caminho guardados (com passo de 0.1 m, 300 pontos = ~30 m de trilha).")]
     [SerializeField] int maxTrailPoints = 300;
     [SerializeField] private EventReference _quackSound;
+    [Tooltip("Sprite que aparece durante o Quack. Fica visivel pelo tempo do cooldown.")]
+    [SerializeField] SpriteRenderer quackSprite;
 
     private EventInstance duckSoundInstance;
+    Coroutine quackSpriteRoutine;
 
     [SerializeField] bool debugLogs;
 
@@ -41,13 +47,14 @@ public class DuckQuack : MonoBehaviour {
 
     public float SearchRadius => searchRadius;
     public float FollowRadius => followRadius;
+    public float IconRadius => iconRadius;
     public int FollowerCount => followers.Count;
 
     readonly List<Duckling> followers = new List<Duckling>();   // [0] = o mais perto da mamãe
     readonly List<Vector2> trail = new List<Vector2>();         // caminho da mamãe, [último] = o mais novo
     DuckFacing facing;
     float lastQuackTime = -Mathf.Infinity;
-    int maxDucklingsLevel = 5;
+
     void Awake() {
         facing = GetComponent<DuckFacing>();
         if (input == null) input = GetComponent<DuckInput>();
@@ -85,9 +92,12 @@ public class DuckQuack : MonoBehaviour {
         lastQuackTime = Time.time;
 
         Quacked?.Invoke();
+        ShowQuackSprite();
+
         if(Utils.IsMusicPlaying(duckSoundInstance))
             duckSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         duckSoundInstance = Utils.FmodSoundPlay(duckSoundInstance, _quackSound);
+
         Vector2 origin = transform.position;
 
         for (int i = Duckling.All.Count - 1; i >= 0; i--) {
@@ -114,6 +124,13 @@ public class DuckQuack : MonoBehaviour {
                     DucklingResponded?.Invoke(d, dir);
                 }
             }
+            else if (dist <= iconRadius) {
+                // Fora do Search mas dentro do Icon: responde com audio e mostra o indicador no Canvas
+                d.Respond();
+                Vector2 dir = toDuckling.normalized;
+                if (debugLogs) Debug.Log($"{d.name} respondeu ao Quack (Icon). Direcao: {dir}", d);
+                DucklingResponded?.Invoke(d, dir);
+            }
         }
     }
 
@@ -122,7 +139,6 @@ public class DuckQuack : MonoBehaviour {
     public void AddFollower(Duckling d) {
         if (followers.Contains(d)) return;
         followers.Add(d);
-        GameEvents.UI.OnUpdateDucklings?.Invoke(followers.Count, maxDucklingsLevel);
         if (debugLogs) Debug.Log($"{d.name} passou a seguir a mamãe ({followers.Count} na fila)", d);
         DucklingJoined?.Invoke(d);
     }
@@ -130,7 +146,6 @@ public class DuckQuack : MonoBehaviour {
     public void RemoveFollower(Duckling d) {
         if (!followers.Remove(d)) return;
         if (debugLogs) Debug.Log($"{d.name} se perdeu da mamãe ({followers.Count} na fila)", d);
-        GameEvents.UI.OnUpdateDucklings?.Invoke(followers.Count, maxDucklingsLevel);
         DucklingLeft?.Invoke(d);
     }
 
@@ -161,11 +176,26 @@ public class DuckQuack : MonoBehaviour {
         return prev + Vector2.left * side * remaining;
     }
 
-    // Círculos na Scene view (com o Player selecionado): amarelo = Search, verde = Follow
+    void ShowQuackSprite() {
+        if (quackSprite == null) return;
+        if (quackSpriteRoutine != null) StopCoroutine(quackSpriteRoutine);
+        quackSpriteRoutine = StartCoroutine(QuackSpriteRoutine());
+    }
+
+    IEnumerator QuackSpriteRoutine() {
+        quackSprite.enabled = true;
+        yield return new WaitForSeconds(quackCooldown);
+        quackSprite.enabled = false;
+        quackSpriteRoutine = null;
+    }
+
+    // Círculos na Scene view (com o Player selecionado): amarelo = Search, verde = Follow, ciano = Icone
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, searchRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, followRadius);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, iconRadius);
     }
 }
