@@ -2,8 +2,7 @@
 
 public class MushroomObstacle : MonoBehaviour {
     [Header("Lançamento")]
-
-    [Tooltip("Velocidade (m/s) dada ao jogador na direção para a qual o cogumelo aponta. Altura do pulo ≈ velocidade² / (2 × 9,81 × Ballistic Gravity).")]
+    [Tooltip("Velocidade (m/s) dada ao jogador na direção para a qual o cogumelo aponta. Altura do pulo ~ velocidade² / (2 × 9,81 × Ballistic Gravity).")]
     [SerializeField] private float launchForce = 15f;
 
     [Tooltip("Tempo mínimo entre ativações do cogumelo.")]
@@ -12,17 +11,29 @@ public class MushroomObstacle : MonoBehaviour {
     [Tooltip("Se ativado, o lançamento substitui a velocidade atual do jogador. Desativado, soma à velocidade atual.")]
     [SerializeField] private bool replaceVelocity = true;
 
+    [Header("Animação")]
+    [Tooltip("Animator do cogumelo. Se não for atribuído, procura automaticamente no próprio objeto ou nos filhos.")]
+    [SerializeField] private Animator animator;
+
+    [Tooltip("Nome do Trigger disparado no Animator quando o cogumelo é ativado.")]
+    [SerializeField] private string triggerName = "Activate";
+
     private float lastActivationTime = -Mathf.Infinity;
 
-    private void OnCollisionEnter2D(Collision2D collision){
+    private void Awake() {
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
         TryLaunch(collision.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
+    private void OnTriggerEnter2D(Collider2D other) {
         TryLaunch(other.gameObject);
     }
 
-    private void TryLaunch(GameObject target){
+    private void TryLaunch(GameObject target) {
         if (Time.time < lastActivationTime + activationCooldown)
             return;
 
@@ -37,6 +48,14 @@ public class MushroomObstacle : MonoBehaviour {
             return;
 
         lastActivationTime = Time.time;
+
+        // Dispara a animação do cogumelo
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+
+        if (animator != null && !string.IsNullOrEmpty(triggerName)) {
+            animator.SetTrigger(triggerName);
+        }
 
         // A direção é determinada pela rotação do cogumelo.
         Vector2 launchDirection = transform.up;
