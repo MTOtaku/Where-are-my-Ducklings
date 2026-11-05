@@ -32,7 +32,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 238658940928
-    m_Key: ui_back
+    m_Key: ui_back_menu
     m_Metadata:
       m_Items: []
   - m_Id: 3343635083264
@@ -65,6 +65,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 8241491636224
     m_Key: ui_final_time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345235044331520
+    m_Key: ui_bindings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345519007100928
+    m_Key: ui_master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345562569142272
+    m_Key: ui_music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345582735355904
+    m_Key: ui_sfx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 346495508180992
+    m_Key: ui_back
     m_Metadata:
       m_Items: []
   m_Metadata:

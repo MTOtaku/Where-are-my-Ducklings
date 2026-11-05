@@ -44,7 +44,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3404838367232
-    m_Localized: Grasnido
+    m_Localized: Quack
     m_Metadata:
       m_Items: []
   - m_Id: 3797815291904
@@ -68,11 +68,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8241491636224
-    m_Localized: "Parab\xE9ns! Voc\xEA terminou a fase em {levelMinuteTime} minutos
+    m_Localized: "Parab\xE9ns! Voc\xEA terminou a fase em:\\n {levelMinuteTime} minutos
       e {levelSecondsTime} segundos."
     m_Metadata:
       m_Items:
       - rid: 1398784496211591325
+  - m_Id: 345235044331520
+    m_Localized: Controles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345519007100928
+    m_Localized: Geral
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345562569142272
+    m_Localized: Musica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345582735355904
+    m_Localized: Efeitos Sonoros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 346495508180992
+    m_Localized: Voltar
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

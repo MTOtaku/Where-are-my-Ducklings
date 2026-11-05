@@ -68,11 +68,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8241491636224
-    m_Localized: Congratulation! You finish the level in {levelMinuteTime} minutes
+    m_Localized: Congratulation! You finish the level in:\n {levelMinuteTime} minutes
       and {levelSecondsTime} seconds.
     m_Metadata:
       m_Items:
       - rid: 1398784496211591324
+  - m_Id: 345235044331520
+    m_Localized: Bindings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345519007100928
+    m_Localized: Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345562569142272
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345582735355904
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 346495508180992
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

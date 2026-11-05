@@ -188,14 +188,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextLocalize
   text:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 345519007100928
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  objectText: {fileID: 0}
+  objectText: {fileID: 8300979151268439386}
   references:
     version: 2
     RefIds: []
@@ -1623,14 +1623,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextLocalize
   text:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 345562569142272
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  objectText: {fileID: 0}
+  objectText: {fileID: 2506607228288535130}
   references:
     version: 2
     RefIds: []
@@ -1897,14 +1897,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextLocalize
   text:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:a916afd3e4f9c7247b1d31b4d613f282
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 345582735355904
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  objectText: {fileID: 0}
+  objectText: {fileID: 175580204602252108}
   references:
     version: 2
     RefIds: []
@@ -2056,7 +2056,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3224482112920906110, guid: c6243a0616a80fd45920c88202f0a912, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347735857998768052, guid: c6243a0616a80fd45920c88202f0a912, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 346495508180992
       objectReference: {fileID: 0}
     - target: {fileID: 6903486167922972620, guid: c6243a0616a80fd45920c88202f0a912, type: 3}
       propertyPath: m_Pivot.x
@@ -2180,6 +2184,14 @@ PrefabInstance:
     - target: {fileID: 2285840330353196575, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Name
       value: RebindScreen_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableEntryReference.m_KeyId
+      value: 345235044331520
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252152014152660443, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
+      propertyPath: text.m_TableReference.m_TableCollectionName
+      value: GUID:a916afd3e4f9c7247b1d31b4d613f282
       objectReference: {fileID: 0}
     - target: {fileID: 8038586817939752707, guid: b0c47cba0566b4f47b83330d005d5470, type: 3}
       propertyPath: m_Pivot.x
