@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 467493699412535151}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.082, y: 1.034, z: 0}
+  m_LocalPosition: {x: 0.641, y: 0.656, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,8 +196,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.008837581, y: 0.0088377}
-  m_Size: {x: 0.9949086, y: 2.007494}
+  m_Offset: {x: 0, y: -0.2842971}
+  m_Size: {x: 1, y: 1.6714056}
   m_Direction: 0
 --- !u!114 &7303211261713389622
 MonoBehaviour:
@@ -833,6 +833,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7447130297034288405, guid: 0e74d622a41bb344d9fa26bb248eea9a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -909,7 +913,6 @@ MonoBehaviour:
   - {fileID: 4614132843866887491}
   - {fileID: 4269022268179297389}
   - {fileID: 3998863171023108784}
-  - {fileID: 7361053065455931558}
   fallenParts:
   - {fileID: 8432198100586967009}
   - {fileID: 113336781644264031}
@@ -1074,11 +1077,6 @@ GameObject:
 --- !u!1 &7139644885919646707 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1787184671098531151, guid: 0e74d622a41bb344d9fa26bb248eea9a, type: 3}
-  m_PrefabInstance: {fileID: 299410418899276098}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7361053065455931558 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -2161711381080456732, guid: 0e74d622a41bb344d9fa26bb248eea9a, type: 3}
   m_PrefabInstance: {fileID: 299410418899276098}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7775127556113341403 stripped
