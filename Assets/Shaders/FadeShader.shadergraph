@@ -1443,7 +1443,7 @@
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
         "x": 0.10000000149011612,
-        "y": 1.0
+        "y": 5.0
     },
     "m_SliderType": 0,
     "m_SliderPower": 3.0,
@@ -2234,7 +2234,7 @@
         "x"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -2274,7 +2274,7 @@
         "opposite"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -2509,10 +2509,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -645.0000610351563,
-            "y": 455.0000305175781,
+            "x": -644.9999389648438,
+            "y": 454.99993896484377,
             "width": 103.0,
-            "height": 34.0
+            "height": 34.000030517578128
         }
     },
     "m_Slots": [
@@ -3878,7 +3878,7 @@
         "tex2d"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {

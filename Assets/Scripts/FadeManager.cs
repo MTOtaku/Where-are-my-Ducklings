@@ -7,6 +7,7 @@ public class FadeManager : MonoBehaviour
 {
 
     [SerializeField] private float animationDuration;
+    [SerializeField] private GameObject bg;
     [SerializeField] private Image fadeImage;
     private Material fadeMaterial;
 
@@ -37,12 +38,16 @@ public class FadeManager : MonoBehaviour
     {
         var progress = 0.0f;
         var timer = 0.0f;
+        if(isFadeIn)
+            yield return new WaitForSeconds(0.2f);
+        
+        bg.SetActive(false);
         while(progress < 1)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             progress = Mathf.Clamp01(timer/ animationDuration);
-            var initialValue = isFadeIn ? 0.01f : 1.0f;
-            var finalValue = isFadeIn ? 1.0f: 0.01f;
+            var initialValue = isFadeIn ? 0.01f : 5f;
+            var finalValue = isFadeIn ? 5f: 0.01f;
 
             var scaleProgress = Mathf.Lerp(initialValue, finalValue, progress);
             var scaleName = "_scale";
@@ -55,7 +60,7 @@ public class FadeManager : MonoBehaviour
             fadeImage.color = new Color(255, 255, 255, 0);
             fadeImage.raycastTarget = false;
         }
-
+        bg.SetActive(!isFadeIn);
         fadeAnimationFinish?.Invoke();
     }
 }

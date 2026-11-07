@@ -106,11 +106,20 @@ public class PauseController : MonoBehaviour {
     public void Resume() => PauseManager.Resume();
 
     public void RestartLevel() {
+        GameEvents.UI.OnFadeAnimation?.Invoke(false, RestartLevelAfterFade);
+    }
+
+    private void RestartLevelAfterFade()
+    {
         PauseManager.Resume();
         Utils.LoadScene(SceneManager.GetActiveScene().name);
     }
-
     public void QuitToMenu() {
+        GameEvents.UI.OnFadeAnimation?.Invoke(false, QuitToMenuAfterFade);
+    }
+
+    private void QuitToMenuAfterFade()
+    {
         PauseManager.Resume();
         GameEvents.QuitMenu.OnQuit?.Invoke();
         Utils.LoadScene(menuSceneName);

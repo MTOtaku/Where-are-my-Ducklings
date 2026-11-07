@@ -6,18 +6,24 @@ using UnityEngine.Video;
 public class CutSceneManager : MonoBehaviour
 {
     [SerializeField] private VideoPlayer video;
+    [SerializeField] private float waitingTimerForFadeout;
     private const string TITLE_SCREEN_SCENE = "Title_Screen";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(ShowVideo());
+        GameEvents.UI.OnFadeAnimation?.Invoke(true, ShowVideo);
+
     }
 
-    IEnumerator ShowVideo()
+    private void ShowVideo(){
+        StartCoroutine(CoroutineShowVideo());
+    }
+    IEnumerator CoroutineShowVideo()
     {
-        Debug.Log(video.length- 1f);
-        yield return new WaitForSeconds(18f);
+        yield return new WaitForSeconds(17f);
         video.Pause();
+        yield return new WaitForSeconds(waitingTimerForFadeout);
+
         GameEvents.UI.OnFadeAnimation.Invoke(false, GoToMainMenu);
     }
 
