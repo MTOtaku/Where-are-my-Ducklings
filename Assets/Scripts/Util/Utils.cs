@@ -46,4 +46,20 @@ public static class Utils
         soundInstance.start();
         return soundInstance;
     }
+
+    public static VCA GetFmodVCA(string VCAPath)
+    {
+        return RuntimeManager.GetVCA(VCAPath);
+    }
+
+    public static float GetVolumeFromVCA(VCA vca)
+    {
+         vca.getVolume(out float volume, out float finalVolume);
+         return volume;
+    }
+
+    public static void SetVolumeInVCA(float newVolume, VCA vca)
+    {
+        vca.setVolume(newVolume);
+    }
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using FMOD.Studio;
+using FMODUnity;
+using UnityEngine;
 
 public class MushroomObstacle : MonoBehaviour {
     [Header("Lançamento")]
@@ -17,6 +19,9 @@ public class MushroomObstacle : MonoBehaviour {
 
     [Tooltip("Nome do Trigger disparado no Animator quando o cogumelo é ativado.")]
     [SerializeField] private string triggerName = "Activate";
+    [SerializeField] private EventReference _mushroomSound;
+
+    private EventInstance mushroomSoundInstance;
 
     private float lastActivationTime = -Mathf.Infinity;
 
@@ -25,6 +30,10 @@ public class MushroomObstacle : MonoBehaviour {
             animator = GetComponentInChildren<Animator>();
     }
 
+    void OnDisable()
+    {
+        mushroomSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
     private void OnCollisionEnter2D(Collision2D collision) {
         TryLaunch(collision.gameObject);
     }
@@ -56,7 +65,9 @@ public class MushroomObstacle : MonoBehaviour {
         if (animator != null && !string.IsNullOrEmpty(triggerName)) {
             animator.SetTrigger(triggerName);
         }
-
+        if(Utils.IsMusicPlaying(mushroomSoundInstance))
+            mushroomSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        mushroomSoundInstance = Utils.FmodSoundPlay(mushroomSoundInstance, _mushroomSound);
         // A direção é determinada pela rotação do cogumelo.
         Vector2 launchDirection = transform.up;
         

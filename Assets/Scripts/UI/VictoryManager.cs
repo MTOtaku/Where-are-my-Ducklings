@@ -17,16 +17,23 @@ public class VictoryManager : MonoBehaviour
     private const string MAIN_MENU_SCENE_NAME = "Title_Screen";
     void Start()
     {
-        ShowTimeResult();
         mainMenuButton.Initialize(ReturnMainMenu);
         winSoundInstance = Utils.FmodSoundPlay(winSoundInstance, _winSound);
+        ShowTimeResult();
+        GameEvents.UI.OnFadeAnimation?.Invoke(true, null);
     }
     
     private void ReturnMainMenu()
     {
+        GameEvents.UI.OnFadeAnimation?.Invoke(false, ReturnMainMenuAfterFade);
+    }
+
+    private void ReturnMainMenuAfterFade()
+    {
         winSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         Utils.LoadScene(MAIN_MENU_SCENE_NAME);
     }
+
     private void ShowTimeResult()
     {
         var timeResult = GameManager.Instance.LevelCurrentTime;

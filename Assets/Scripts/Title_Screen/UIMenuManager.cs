@@ -47,6 +47,8 @@ public class UIMenuManager : MonoBehaviour {
         {
             backButton.Initialize(BackToTitleScreen);
         }
+        GameEvents.UI.OnFadeAnimation?.Invoke(true, null);
+
         BackgroundSoundManager.Instance.InicializarMusica();
         var myLocale = LocalizationSettings.AvailableLocales.GetLocale(LocalizationSettings.SelectedLocale.Identifier);
         currentLanguageIndex = LocalizationSettings.AvailableLocales.Locales.IndexOf(myLocale);
@@ -68,10 +70,15 @@ public class UIMenuManager : MonoBehaviour {
     }
     
     public void OpenLevelSelectPanel(){
+        GameEvents.UI.OnFadeAnimation?.Invoke(false, LoadGameLevel);
+    }
+
+    private void LoadGameLevel()
+    {
         GameEvents.AudioSystem.StartGame.Invoke();
         Utils.LoadScene(GAME_SCENE_NAME);
     }
- 
+
     public void OpenSettingsPanel(){
         OpenPanel(settingsPanel);
     }

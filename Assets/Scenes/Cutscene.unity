@@ -308,6 +308,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutSceneManager
   video: {fileID: 853995062}
+  waitingTimerForFadeout: 2
+  _cutSceneSound:
+    Guid:
+      Data1: 1702500881
+      Data2: 1179698511
+      Data3: 1221797021
+      Data4: -1552493800
+    Path: event:/cutscene
 --- !u!1 &853995061
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,8 +491,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1077467022}
   - component: {fileID: 1077467021}
-  - component: {fileID: 1077467020}
   - component: {fileID: 1077467019}
+  - component: {fileID: 1077467023}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -536,14 +544,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &1077467020
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077467018}
-  m_Enabled: 1
 --- !u!20 &1077467021
 Camera:
   m_ObjectHideFlags: 0
@@ -610,6 +610,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1077467023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077467018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &1245123440
 GameObject:
   m_ObjectHideFlags: 0

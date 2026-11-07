@@ -22,12 +22,15 @@ public class LevelManager : MonoBehaviour
     private void LevelCompleted(float gameTime)
     {
         GameManager.Instance.LevelCurrentTime = gameTime;
-        BackgroundSoundManager.Instance.InstanciaMusica.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        GameEvents.UI.OnFadeAnimation?.Invoke(false, LevelCompletedAfterFade);
+    }
 
+    private void LevelCompletedAfterFade()
+    {
+        BackgroundSoundManager.Instance.InstanciaMusica.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         ambienceSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         Utils.LoadScene(victory_scene);
     }
-
     private IEnumerator InitializeGame()
     {
         yield return null;
