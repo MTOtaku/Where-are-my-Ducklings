@@ -189,6 +189,13 @@ MonoBehaviour:
   replaceVelocity: 0
   animator: {fileID: 6069059393148373319}
   triggerName: Activate
+  _mushroomSound:
+    Guid:
+      Data1: 1592419264
+      Data2: 1207290385
+      Data3: -702339186
+      Data4: -1596236369
+    Path: event:/mushroom
 --- !u!95 &6069059393148373319
 Animator:
   serializedVersion: 7
