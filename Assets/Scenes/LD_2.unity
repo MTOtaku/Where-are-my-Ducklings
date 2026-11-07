@@ -78626,6 +78626,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1963440084209818737, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: _walkSound.Path
+      value: event:/fs_duck
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963440084209818737, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: _walkSound.Guid.Data1
+      value: 259719165
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963440084209818737, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: _walkSound.Guid.Data2
+      value: 1258380976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963440084209818737, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: _walkSound.Guid.Data3
+      value: 1819980431
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963440084209818737, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
+      propertyPath: _walkSound.Guid.Data4
+      value: -210120682
+      objectReference: {fileID: 0}
     - target: {fileID: 3228386722451755343, guid: e37992f428c0a6a4498d6347a62faef4, type: 3}
       propertyPath: m_Name
       value: Player
