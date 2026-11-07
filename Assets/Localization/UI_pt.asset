@@ -93,6 +93,10 @@ MonoBehaviour:
     m_Localized: Voltar
     m_Metadata:
       m_Items: []
+  - m_Id: 1036943155425280
+    m_Localized: Feito utilizando FMOD Studio por Firelight Technologies Pty Ltd.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

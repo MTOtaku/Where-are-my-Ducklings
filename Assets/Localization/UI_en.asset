@@ -52,11 +52,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3841062760448
-    m_Localized: Movement Water
+    m_Localized: Water Movement
     m_Metadata:
       m_Items: []
   - m_Id: 4104607657984
-    m_Localized: Reset Controll
+    m_Localized: Reset Control
     m_Metadata:
       m_Items: []
   - m_Id: 4856851886080
@@ -68,8 +68,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8241491636224
-    m_Localized: Congratulation! You finish the level in:\n {levelMinuteTime} minutes
-      and {levelSecondsTime} seconds.
+    m_Localized: Congratulations! You finished the level in:\n {levelMinuteTime}
+      minutes and {levelSecondsTime} seconds.
     m_Metadata:
       m_Items:
       - rid: 1398784496211591324
@@ -91,6 +91,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 346495508180992
     m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1036943155425280
+    m_Localized: Made using FMOD Studio by Firelight Technologies Pty Ltd.
     m_Metadata:
       m_Items: []
   references:
