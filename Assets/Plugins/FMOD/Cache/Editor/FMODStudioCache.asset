@@ -1034,7 +1034,7 @@ MonoBehaviour:
   Path: Assets/Audio/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639296058451413977
+  lastModified: 639296078878413633
   FileSizes: []
   Exists: 1
 --- !u!114 &-163108778482072525
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 418840583533091110}
   cacheVersion: 131849
-  cacheTime: 639296058451716530
+  cacheTime: 639296078878413633
   SerializableEventsDict:
   - key: event:/quack_little
     index: 0
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   Path: Assets/Audio/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639296058451716530
+  lastModified: 639296078878413633
   FileSizes:
   - Name: 
     Value: 1936

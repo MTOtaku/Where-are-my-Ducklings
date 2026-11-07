@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
@@ -27,7 +28,7 @@ public class UIMenuManager : MonoBehaviour {
     [SerializeField] private List<string> keyReferences;
     [SerializeField] private List<GenericButton> backsButtons;
     [SerializeField] private int currentLanguageIndex;
-     
+    [SerializeField] private TextMeshProUGUI gameVersionText;
     [Header("Level Start")]        
     [Tooltip("Nome do Level ou da Scene que vai iniciar ao apertar o Play")]
     [SerializeField] private string GAME_SCENE_NAME = "LD_2";
@@ -52,6 +53,7 @@ public class UIMenuManager : MonoBehaviour {
         BackgroundSoundManager.Instance.InicializarMusica();
         var myLocale = LocalizationSettings.AvailableLocales.GetLocale(LocalizationSettings.SelectedLocale.Identifier);
         currentLanguageIndex = LocalizationSettings.AvailableLocales.Locales.IndexOf(myLocale);
+        gameVersionText.text = $"Game Version: {Application.version}";
     }
 
     //Ativar somente o painel escolhido
